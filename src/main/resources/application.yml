@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/waneBase
+    username: wanapi_client_htsml
+    password: WanemaBaSenegal@Bep_NS13
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate.ddl-auto: update
+server:
+  port: 8000
+app:
+  name: Afreeplace
+  profile: Default
