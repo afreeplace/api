@@ -10,7 +10,6 @@ import seyfa.afreeplace.repositories.UserRepository;
 
 import java.time.LocalDateTime;
 
-@Configuration
 public class TradeBuilderTest {
 
     final static Logger logger = LoggerFactory.getLogger(TradeBuilderTest.class);
