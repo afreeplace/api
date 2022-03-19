@@ -33,7 +33,7 @@ public class Application {
 
 	@PostConstruct
 	public void post() {
-		logger.info("'{}' api, '{}' environment", appName, profile);
+		logger.info("API: '{}', Environment: '{}' ", appName, profile);
 		bootstrapActions.executeActions();
 	}
 

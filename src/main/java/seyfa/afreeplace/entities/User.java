@@ -46,6 +46,11 @@ public class User implements Serializable {
 
     ///////////////// ADMIN ROLES /////////////////
 
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Trade> trades = new ArrayList<>();
+
+    ///////////////// ADMIN ROLES /////////////////
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",

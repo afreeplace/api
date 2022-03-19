@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
@@ -17,13 +18,14 @@ import java.time.LocalDateTime;
 public class Trade {
 
     public enum Status {
-        CREATED,
+        REQUESTED,              // created or modified
+        WAITING_FOR_VALIDATION, // admin will see it
         VALIDATED
     }
 
     @Id()
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "u_id")
+    @Column(name = "tr_id")
     private int id;
 
     @NotBlank(message = "Email must not be blank")
@@ -57,5 +59,11 @@ public class Trade {
 
     @Column(name = "creationDate")
     private LocalDateTime creationDate;
+
+    ///////////////// ADMIN ROLES /////////////////
+
+    @ManyToOne
+    @JoinColumn(name = "u_id")
+    private User owner;
 
 }

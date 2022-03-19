@@ -5,6 +5,11 @@ public class ExceptionConstants {
     public static String userNotFound() {
         return "L'utilisateur demandé n'existe pas";
     }
+
+    public static String tradeNotFound() {
+        return "Le trade demandé n'existe pas";
+    }
+
     public static String formErrors() {
         return "Erreur de formulaire, veuillez vérifier vos données";
     }
