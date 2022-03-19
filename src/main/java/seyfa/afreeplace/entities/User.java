@@ -22,12 +22,12 @@ public class User implements Serializable {
     @Column(name = "u_id")
     private int id;
 
-    @NotBlank(message = "Email must not be blank")
+    @NotBlank(message = "Firstname must not be blank")
     @Size(min = 2, max = 30)
     @Column(name = "firstname", length = 30, nullable = false)
     private String firstname;
 
-    @NotBlank(message = "Email must not be blank")
+    @NotBlank(message = "Lastname must not be blank")
     @Size(min = 2, max = 30)
     @Column(name = "lastname", length = 30, nullable = false)
     private String lastname;
@@ -41,7 +41,7 @@ public class User implements Serializable {
     @Column(name = "password", length = 300, nullable = false)
     private String password;
 
-    @Column(name = "creation_date")
+    @Column(name = "creationDate", nullable = false)
     private LocalDateTime creationDate;
 
     ///////////////// ADMIN ROLES /////////////////

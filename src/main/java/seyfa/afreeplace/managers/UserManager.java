@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-public class UserManager implements IManager<Integer, User> {
+public class UserManager implements IManager<User, Integer> {
 
     @Autowired
     UserRepository userRepository;

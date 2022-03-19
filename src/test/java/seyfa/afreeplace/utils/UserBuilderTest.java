@@ -1,11 +1,15 @@
 package seyfa.afreeplace.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import seyfa.afreeplace.entities.User;
 import seyfa.afreeplace.repositories.UserRepository;
 
 import java.time.LocalDateTime;
 
 public class UserBuilderTest {
+
+    static final Logger logger = LoggerFactory.getLogger(UserBuilderTest.class);
 
     public static User create(UserRepository userRepository, String email, String password) {
         User user = new User(email, password, LocalDateTime.now());
@@ -14,7 +18,7 @@ public class UserBuilderTest {
 
         if(userRepository != null) {
             userRepository.save(user);
-            System.err.println("Created user " + user);
+            logger.info("Created user " + user);
         }
         return user;
     }
@@ -23,9 +27,9 @@ public class UserBuilderTest {
         User user = userRepository.findById(userId).orElse(null);
         if(user != null) {
             userRepository.delete(userRepository.findById(userId).get());
-            System.err.println("Deleted user " + userId);
+            logger.info("Deleted user {}", userId);
         } else {
-            System.err.println("Deleted user " + userId);
+            logger.info("Already deleted user {}", userId);
         }
     }
 

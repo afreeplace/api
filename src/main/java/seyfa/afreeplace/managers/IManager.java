@@ -2,7 +2,7 @@ package seyfa.afreeplace.managers;
 
 import seyfa.afreeplace.exceptions.ManagerException;
 
-public interface IManager<Id, Obj> {
+public interface IManager<Obj, Id> {
 
     Obj find(Id id)         throws ManagerException;
 
