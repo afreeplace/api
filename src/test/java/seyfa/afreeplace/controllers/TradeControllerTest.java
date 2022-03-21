@@ -1,4 +1,4 @@
-package seyfa.afreeplace.managers;
+package seyfa.afreeplace.controllers;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,6 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.BindingResult;
 import seyfa.afreeplace.Application;
 import seyfa.afreeplace.entities.Trade;
 import seyfa.afreeplace.entities.User;
@@ -19,18 +23,18 @@ import seyfa.afreeplace.utils.UserBuilderTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class TradeManagerTest {
+public class TradeControllerTest {
 
     static final Logger logger = LoggerFactory.getLogger(Application.class);
 
     @Autowired
-    TradeManager tradeManager;
-
-    @Autowired
-    UserRepository userRepository;
+    TradeController tradeController;
 
     @Autowired
     TradeRepository tradeRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     int tradeId, secondTradeId;
     String name = "Seyfa Tech";
@@ -48,55 +52,56 @@ public class TradeManagerTest {
     }
 
     @Test
-    public void ok() {
-        assertNotNull(tradeManager);
-    }
-
-    @Test
-    public void createWithNoOwnerFails() {
-        Trade trade = TradeBuilderTest.create(null, "SeyfaTech3", Trade.Status.VALIDATED);
-        assertThrows(ManagerException.class, () -> {
-            tradeManager.create(trade);
-        });
-    }
-
-    @Test
-    public void createWorks() {
+    public void testCreateWorks() {
         User owner = UserBuilderTest.create(userRepository, "Fallou@test.fr", "Seye");
-
+        logger.info("Owner created {}", owner);
         Trade trade = TradeBuilderTest.create(null, "SeyfaTech3", Trade.Status.VALIDATED);
         trade.setOwner(owner);
 
-        secondTradeId = tradeManager.create(trade);
-        logger.info("Trade {} ", secondTradeId);
-        assertNotNull(tradeRepository.findById(secondTradeId).orElse(null));
+        BindingResult result = new BeanPropertyBindingResult(trade, "request");
+        ResponseEntity responseEntity = tradeController.createTrade(trade, result);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
 
+        // clean up
         UserBuilderTest.delete(owner.getId(), userRepository);
     }
 
     @Test
-    public void updateWorks() {
+    public void testCreateFails() {
+        Trade trade = TradeBuilderTest.create(null, "SeyfaTech3", Trade.Status.VALIDATED);
+
+        assertThrows (ManagerException.class, () -> {
+            BindingResult result = new BeanPropertyBindingResult(trade, "request");
+            ResponseEntity responseEntity = tradeController.createTrade(trade, result);
+            assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
+        });
+    }
+
+    @Test
+    public void testUpdateWorks() {
         Trade trade = tradeRepository.findById(tradeId).get();
 
         String newName        = "SeyfaTech2";
         String newPhoneNumber = "phone2";
-        String newLogoUrl     = "zegpjozrgjop";
+        String website     = "zegpjozrgjop";
 
         trade.setName(newName);
         trade.setPhoneNumber(newPhoneNumber);
-        trade.setLogoUrl(newLogoUrl);
-        tradeManager.update(trade);
+        trade.setWebsiteUrl(website);
+
+        BindingResult result = new BeanPropertyBindingResult(trade, "request");
+        ResponseEntity responseEntity = tradeController.updateTrade(trade, result);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
 
         Trade updatedTrade = tradeRepository.findById(tradeId).get();
         assertEquals(newName, updatedTrade.getName());
         assertEquals(newPhoneNumber, updatedTrade.getPhoneNumber());
-        assertEquals(newLogoUrl, updatedTrade.getLogoUrl());
-        assertNull(trade.getWebsiteUrl());
-
+        assertEquals(website, updatedTrade.getWebsiteUrl());
+        assertNull(trade.getLogoUrl());
     }
 
     @Test
-    public void updateNullTradeFails() {
+    public void testUpdateFails() {
         Trade trade = tradeRepository.findById(tradeId).get();
 
         String newName        = "SeyfaTech2";
@@ -109,14 +114,18 @@ public class TradeManagerTest {
         trade.setId(-1);
 
         assertThrows(ManagerException.class, () -> {
-            tradeManager.update(trade);
+            BindingResult result = new BeanPropertyBindingResult(trade, "request");
+            ResponseEntity responseEntity = tradeController.updateTrade(trade, result);
+            tradeController.updateTrade(trade, result);
+            assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
         });
     }
 
     @Test
-    public void deleteWorks() {
-        tradeManager.delete(tradeId);
-        assertNull(tradeRepository.findById(tradeId).orElse(null));
+    public void testDeleteWorks() {
+        ResponseEntity responseEntity = tradeController.deleteTrade(tradeId);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     }
+
 
 }

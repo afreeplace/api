@@ -1,5 +1,7 @@
 package seyfa.afreeplace.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -63,6 +65,7 @@ public class Trade {
     ///////////////// ADMIN ROLES /////////////////
 
     @ManyToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JoinColumn(name = "u_id")
     private User owner;
 

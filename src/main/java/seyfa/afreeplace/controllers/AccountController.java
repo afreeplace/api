@@ -65,4 +65,5 @@ public class AccountController {
         result.put("message", "App Starter is working");
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
 }

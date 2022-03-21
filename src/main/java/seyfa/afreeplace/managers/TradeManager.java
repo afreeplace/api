@@ -32,8 +32,10 @@ public class TradeManager implements IManager<Trade, Integer> {
     }
 
     @Override
-    public void create(Trade trade) throws ManagerException {
+    public Integer create(Trade trade) throws ManagerException {
         Trade newTrade = new Trade();
+
+        logger.info("Trade {}", trade);
 
         if(trade.getOwner() == null) throw new ManagerException(ExceptionConstants.userNotFound());
         User foundOwner = userRepository.findById(trade.getOwner().getId()).orElseThrow(() -> new ManagerException(ExceptionConstants.userNotFound()));
@@ -51,10 +53,13 @@ public class TradeManager implements IManager<Trade, Integer> {
         newTrade.setWebsiteUrl(trade.getWebsiteUrl());
 
         tradeRepository.save(newTrade);
+        logger.info("Manager created thade {}");
+        return newTrade.getId();
     }
 
     @Override
     public void update(Trade object) throws ManagerException {
+        logger.info("Trying updating trade {}", object.getId());
         Trade trade =  tradeRepository.findById(object.getId()).orElseThrow(() -> new ManagerException(ExceptionConstants.tradeNotFound()));
 
         trade.setName(object.getName());
@@ -62,6 +67,7 @@ public class TradeManager implements IManager<Trade, Integer> {
         trade.setDescription(object.getDescription());
         trade.setLogoUrl(object.getLogoUrl());
         trade.setWebsiteUrl(object.getWebsiteUrl());
+        logger.info("Updated:  {}", trade);
 
         tradeRepository.save(trade); 
     }
@@ -72,4 +78,5 @@ public class TradeManager implements IManager<Trade, Integer> {
         Trade trade = tradeRepository.findById(id).orElseThrow(() -> new ManagerException(ExceptionConstants.tradeNotFound()));
         tradeRepository.delete(trade);
     }
+
 }

@@ -1,5 +1,6 @@
 package seyfa.afreeplace;
 
+import com.google.maps.GeoApiContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import seyfa.afreeplace.utils.lifecycle.BootstrapActions;
@@ -26,6 +27,9 @@ public class Application {
 	private String profile;
 
 	@Autowired
+	GeoApiContext geoApiContext;
+
+	@Autowired
 	BootstrapActions bootstrapActions;
 
 	@Autowired
@@ -39,6 +43,10 @@ public class Application {
 
 	@PreDestroy
 	public void pre() {
+
+		geoApiContext.shutdown();
+		logger.info("GeoApiContext shut down success");
+
 		endActions.executeActions();
 	}
 

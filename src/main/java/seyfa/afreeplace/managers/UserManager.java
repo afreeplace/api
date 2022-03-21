@@ -31,7 +31,7 @@ public class UserManager implements IManager<User, Integer> {
     }
 
     @Override
-    public void create(User user) throws ManagerException {
+    public Integer create(User user) throws ManagerException {
         User exists = userRepository.findByEmail(user.getEmail()).orElse(null);
 
         if(exists != null) {
@@ -50,6 +50,8 @@ public class UserManager implements IManager<User, Integer> {
 
         System.err.println(userToCreate);
         userRepository.save(userToCreate);
+
+        return user.getId();
     }
 
     @Override

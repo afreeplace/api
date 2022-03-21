@@ -3,6 +3,8 @@ package seyfa.afreeplace.controllers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
+import seyfa.afreeplace.Application;
 import seyfa.afreeplace.entities.PasswordRequest;
 import seyfa.afreeplace.entities.User;
 import seyfa.afreeplace.exceptions.ManagerException;
@@ -20,6 +23,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class AccountControllerTest {
+
+    static final Logger logger = LoggerFactory.getLogger(Application.class);
 
     @Autowired
     AccountController accountController;
@@ -52,14 +57,18 @@ public class AccountControllerTest {
 
     @Test
     public void testCreateWorks() {
-        User createdUser = UserBuilderTest.create(null, "test5@api2.fr", passwordEncoder.encode(password));
-        createdUserId = createdUser.getId();
+        String email = "test5@api2.fr";
+        User createdUser = UserBuilderTest.create(null, email, passwordEncoder.encode(password));
 
         BindingResult result = new BeanPropertyBindingResult(createdUser, "request");
         ResponseEntity responseEntity = accountController.createAccuont(createdUser, result);
-
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        userRepository.delete(createdUser);
+
+        createdUserId = userRepository.findByEmail(email).get().getId();
+        logger.info("CreatedUser3 {} " + createdUserId);
+
+        // cleanUp
+        userRepository.delete(userRepository.findByEmail(email).get());
         assertNull(userRepository.findById(createdUserId).orElse(null));
     }
 
