@@ -1,6 +1,6 @@
 package seyfa.afreeplace.controllers;
 
-import seyfa.afreeplace.entities.AuthRequest;
+import seyfa.afreeplace.entities.request.AuthRequest;
 import seyfa.afreeplace.repositories.UserRepository;
 import seyfa.afreeplace.utils.UserBuilderTest;
 import org.junit.jupiter.api.AfterEach;

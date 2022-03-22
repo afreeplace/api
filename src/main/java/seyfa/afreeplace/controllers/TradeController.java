@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import seyfa.afreeplace.entities.Trade;
+import seyfa.afreeplace.entities.business.Trade;
 import seyfa.afreeplace.managers.TradeManager;
 import seyfa.afreeplace.utils.response.BindingResultWrapper;
 import seyfa.afreeplace.utils.response.ResponseObject;

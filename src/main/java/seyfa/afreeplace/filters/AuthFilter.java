@@ -1,6 +1,6 @@
 package seyfa.afreeplace.filters;
 
-import seyfa.afreeplace.entities.UserRequest;
+import seyfa.afreeplace.entities.request.UserRequest;
 import seyfa.afreeplace.repositories.UserRepository;
 import seyfa.afreeplace.security.CustomUserDetailsService;
 import seyfa.afreeplace.services.jwt.JwtManager;

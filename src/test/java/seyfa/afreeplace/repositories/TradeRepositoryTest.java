@@ -3,13 +3,11 @@ package seyfa.afreeplace.repositories;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import seyfa.afreeplace.entities.Trade;
+import seyfa.afreeplace.entities.business.Trade;
 import seyfa.afreeplace.utils.TradeBuilderTest;
-import seyfa.afreeplace.utils.UserBuilderTest;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 

@@ -1,4 +1,4 @@
-package seyfa.afreeplace.entities;
+package seyfa.afreeplace.entities.request;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

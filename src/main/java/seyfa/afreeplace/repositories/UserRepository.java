@@ -1,6 +1,6 @@
 package seyfa.afreeplace.repositories;
 
-import seyfa.afreeplace.entities.User;
+import seyfa.afreeplace.entities.business.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

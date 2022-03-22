@@ -2,7 +2,7 @@ package seyfa.afreeplace.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import seyfa.afreeplace.entities.User;
+import seyfa.afreeplace.entities.business.User;
 import seyfa.afreeplace.repositories.UserRepository;
 
 import java.time.LocalDateTime;

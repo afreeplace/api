@@ -1,4 +1,4 @@
-package seyfa.afreeplace.entities;
+package seyfa.afreeplace.entities.request;
 
 
 import org.springframework.stereotype.Component;

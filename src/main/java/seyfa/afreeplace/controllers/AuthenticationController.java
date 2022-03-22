@@ -1,7 +1,7 @@
 package seyfa.afreeplace.controllers;
 
-import seyfa.afreeplace.entities.AuthRequest;
-import seyfa.afreeplace.entities.User;
+import seyfa.afreeplace.entities.request.AuthRequest;
+import seyfa.afreeplace.entities.business.User;
 import seyfa.afreeplace.managers.UserManager;
 import seyfa.afreeplace.services.jwt.JwtManager;
 import seyfa.afreeplace.utils.response.BindingResultWrapper;

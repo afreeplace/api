@@ -1,4 +1,4 @@
-package seyfa.afreeplace.entities;
+package seyfa.afreeplace.entities.business;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -33,6 +33,9 @@ public class Address {
     @Column(name = "city")
     String city;
 
+    @Column(name = "region")
+    String region;
+
     @Column(name = "country")
     String country;
 
@@ -46,5 +49,7 @@ public class Address {
     @Size(min = 2, max = 200)
     @Column(name = "description", length = 200)
     String description;
+
+
 
 }

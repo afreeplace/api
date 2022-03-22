@@ -20,7 +20,7 @@ public class GoogleGeocodingConfiguration {
 
     @Bean
     public GeoApiContext getGeoApiContext() {
-        GeoApiContext context = new GeoApiContext.Builder(new GaeRequestHandler.Builder())
+        GeoApiContext context = new GeoApiContext.Builder()//new GaeRequestHandler.Builder())
                 .apiKey(key)
                 .maxRetries(5)
                 .retryTimeout(1, TimeUnit.SECONDS)

@@ -1,11 +1,11 @@
 package seyfa.afreeplace.services.geocoding;
 
-import seyfa.afreeplace.entities.Address;
+import seyfa.afreeplace.entities.business.Address;
+
+import java.util.List;
 
 public interface GeocodingService {
 
-    Address findByAddress(String address) throws Exception;
-
-    Address findByPlaceId(String placeId);
+    List<Address> findByAddress(String address) throws Exception;
 
 }

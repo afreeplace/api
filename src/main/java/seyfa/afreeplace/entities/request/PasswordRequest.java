@@ -1,4 +1,4 @@
-package seyfa.afreeplace.entities;
+package seyfa.afreeplace.entities.request;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1394,15 +1394,15 @@ ERROR in ch.qos.logback.core.pattern.parser.Compiler@479460a6 - Failed to create
 2022-03-19 15:58:45,433 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
 2022-03-19 15:58:45,885 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
 2022-03-19 15:58:45,908 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2022-03-19 15:58:46,110 ERROR org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Failed to initialize JPA EntityManagerFactory: The [seyfa.afreeplace.entities.Trade] and [seyfa.afreeplace.entities.User] entities share the same JPA entity name: [User] which is not allowed!
-2022-03-19 15:58:46,128 WARN org.springframework.context.support.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.DuplicateMappingException: The [seyfa.afreeplace.entities.Trade] and [seyfa.afreeplace.entities.User] entities share the same JPA entity name: [User] which is not allowed!
+2022-03-19 15:58:46,110 ERROR org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Failed to initialize JPA EntityManagerFactory: The [seyfa.afreeplace.entities.business.Trade] and [seyfa.afreeplace.entities.business.User] entities share the same JPA entity name: [User] which is not allowed!
+2022-03-19 15:58:46,128 WARN org.springframework.context.support.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.DuplicateMappingException: The [seyfa.afreeplace.entities.business.Trade] and [seyfa.afreeplace.entities.business.User] entities share the same JPA entity name: [User] which is not allowed!
 2022-03-19 15:58:46,129 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Shutdown initiated...
 2022-03-19 15:58:46,160 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Shutdown completed.
 2022-03-19 15:58:46,174 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [main] 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
 2022-03-19 15:58:46,198 ERROR org.springframework.boot.SpringApplication [main] Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.DuplicateMappingException: The [seyfa.afreeplace.entities.Trade] and [seyfa.afreeplace.entities.User] entities share the same JPA entity name: [User] which is not allowed!
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.DuplicateMappingException: The [seyfa.afreeplace.entities.business.Trade] and [seyfa.afreeplace.entities.business.User] entities share the same JPA entity name: [User] which is not allowed!
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
@@ -1490,7 +1490,7 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
 	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:235)
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54)
-Caused by: org.hibernate.DuplicateMappingException: The [seyfa.afreeplace.entities.Trade] and [seyfa.afreeplace.entities.User] entities share the same JPA entity name: [User] which is not allowed!
+Caused by: org.hibernate.DuplicateMappingException: The [seyfa.afreeplace.entities.business.Trade] and [seyfa.afreeplace.entities.business.User] entities share the same JPA entity name: [User] which is not allowed!
 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.addEntityBinding(InFlightMetadataCollectorImpl.java:311)
 	at org.hibernate.cfg.AnnotationBinder.bindClass(AnnotationBinder.java:812)
 	at org.hibernate.boot.model.source.internal.annotations.AnnotationMetadataSourceProcessorImpl.processEntityHierarchies(AnnotationMetadataSourceProcessorImpl.java:225)
@@ -1580,7 +1580,7 @@ java.lang.IllegalStateException: Failed to load ApplicationContext
 	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
 	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:235)
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.DuplicateMappingException: The [seyfa.afreeplace.entities.Trade] and [seyfa.afreeplace.entities.User] entities share the same JPA entity name: [User] which is not allowed!
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.DuplicateMappingException: The [seyfa.afreeplace.entities.business.Trade] and [seyfa.afreeplace.entities.business.User] entities share the same JPA entity name: [User] which is not allowed!
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
@@ -1598,7 +1598,7 @@ Caused by: org.springframework.beans.factory.BeanCreationException: Error creati
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
 	... 71 common frames omitted
-Caused by: org.hibernate.DuplicateMappingException: The [seyfa.afreeplace.entities.Trade] and [seyfa.afreeplace.entities.User] entities share the same JPA entity name: [User] which is not allowed!
+Caused by: org.hibernate.DuplicateMappingException: The [seyfa.afreeplace.entities.business.Trade] and [seyfa.afreeplace.entities.business.User] entities share the same JPA entity name: [User] which is not allowed!
 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.addEntityBinding(InFlightMetadataCollectorImpl.java:311)
 	at org.hibernate.cfg.AnnotationBinder.bindClass(AnnotationBinder.java:812)
 	at org.hibernate.boot.model.source.internal.annotations.AnnotationMetadataSourceProcessorImpl.processEntityHierarchies(AnnotationMetadataSourceProcessorImpl.java:225)
@@ -2120,15 +2120,15 @@ Caused by: org.hibernate.DuplicateMappingException: The [seyfa.afreeplace.entiti
 2022-03-19 20:02:21,310 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
 2022-03-19 20:02:21,607 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
 2022-03-19 20:02:21,621 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2022-03-19 20:02:21,787 ERROR org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Failed to initialize JPA EntityManagerFactory: mappedBy reference an unknown target entity property: seyfa.afreeplace.entities.Trade.trades in seyfa.afreeplace.entities.User.trades
-2022-03-19 20:02:21,788 WARN org.springframework.context.support.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: seyfa.afreeplace.entities.Trade.trades in seyfa.afreeplace.entities.User.trades
+2022-03-19 20:02:21,787 ERROR org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Failed to initialize JPA EntityManagerFactory: mappedBy reference an unknown target entity property: seyfa.afreeplace.entities.business.Trade.trades in seyfa.afreeplace.entities.business.User.trades
+2022-03-19 20:02:21,788 WARN org.springframework.context.support.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: seyfa.afreeplace.entities.business.Trade.trades in seyfa.afreeplace.entities.business.User.trades
 2022-03-19 20:02:21,788 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Shutdown initiated...
 2022-03-19 20:02:21,798 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Shutdown completed.
 2022-03-19 20:02:21,805 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [main] 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
 2022-03-19 20:02:21,825 ERROR org.springframework.boot.SpringApplication [main] Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: seyfa.afreeplace.entities.Trade.trades in seyfa.afreeplace.entities.User.trades
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: seyfa.afreeplace.entities.business.Trade.trades in seyfa.afreeplace.entities.business.User.trades
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
@@ -2216,7 +2216,7 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
 	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:235)
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54)
-Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: seyfa.afreeplace.entities.Trade.trades in seyfa.afreeplace.entities.User.trades
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: seyfa.afreeplace.entities.business.Trade.trades in seyfa.afreeplace.entities.business.User.trades
 	at org.hibernate.cfg.annotations.CollectionBinder.bindStarToManySecondPass(CollectionBinder.java:848)
 	at org.hibernate.cfg.annotations.CollectionBinder$1.secondPass(CollectionBinder.java:799)
 	at org.hibernate.cfg.CollectionSecondPass.doSecondPass(CollectionSecondPass.java:53)
@@ -2307,7 +2307,7 @@ java.lang.IllegalStateException: Failed to load ApplicationContext
 	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
 	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:235)
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: seyfa.afreeplace.entities.Trade.trades in seyfa.afreeplace.entities.User.trades
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: seyfa.afreeplace.entities.business.Trade.trades in seyfa.afreeplace.entities.business.User.trades
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
@@ -2325,7 +2325,7 @@ Caused by: org.springframework.beans.factory.BeanCreationException: Error creati
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
 	... 71 common frames omitted
-Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: seyfa.afreeplace.entities.Trade.trades in seyfa.afreeplace.entities.User.trades
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: seyfa.afreeplace.entities.business.Trade.trades in seyfa.afreeplace.entities.business.User.trades
 	at org.hibernate.cfg.annotations.CollectionBinder.bindStarToManySecondPass(CollectionBinder.java:848)
 	at org.hibernate.cfg.annotations.CollectionBinder$1.secondPass(CollectionBinder.java:799)
 	at org.hibernate.cfg.CollectionSecondPass.doSecondPass(CollectionSecondPass.java:53)

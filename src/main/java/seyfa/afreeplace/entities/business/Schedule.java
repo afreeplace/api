@@ -1,4 +1,4 @@
-package seyfa.afreeplace.entities;
+package seyfa.afreeplace.entities.business;
 
 import lombok.Getter;
 import lombok.Setter;

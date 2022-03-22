@@ -1,8 +1,7 @@
 package seyfa.afreeplace.managers;
 
-import org.apache.tomcat.jni.Local;
-import seyfa.afreeplace.entities.PasswordRequest;
-import seyfa.afreeplace.entities.User;
+import seyfa.afreeplace.entities.request.PasswordRequest;
+import seyfa.afreeplace.entities.business.User;
 import seyfa.afreeplace.exceptions.ManagerException;
 import seyfa.afreeplace.repositories.UserRepository;
 import seyfa.afreeplace.utils.constants.ExceptionConstants;

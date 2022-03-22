@@ -2,11 +2,8 @@ package seyfa.afreeplace.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Configuration;
-import seyfa.afreeplace.entities.Trade;
-import seyfa.afreeplace.entities.User;
+import seyfa.afreeplace.entities.business.Trade;
 import seyfa.afreeplace.repositories.TradeRepository;
-import seyfa.afreeplace.repositories.UserRepository;
 
 import java.time.LocalDateTime;
 

@@ -1,6 +1,6 @@
 package seyfa.afreeplace.security;
 
-import seyfa.afreeplace.entities.User;
+import seyfa.afreeplace.entities.business.User;
 
 import seyfa.afreeplace.exceptions.AuthenticationException;
 import seyfa.afreeplace.repositories.UserRepository;
