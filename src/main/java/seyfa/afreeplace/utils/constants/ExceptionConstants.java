@@ -10,6 +10,7 @@ public class ExceptionConstants {
         return "Le trade demandé n'existe pas";
     }
 
+    public static String addressNotFound() { return "L'adresse spécifiée est inexistante"; }
     public static String formErrors() {
         return "Erreur de formulaire, veuillez vérifier vos données";
     }

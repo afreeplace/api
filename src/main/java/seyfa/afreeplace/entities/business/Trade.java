@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity(name = "Trade")
 @Table(name = "Trade")
-public class Trade {
+public class  Trade {
 
     public enum Status {
         REQUESTED,              // created or modified
@@ -62,9 +62,15 @@ public class Trade {
 
     ///////////////// ADMIN ROLES /////////////////
 
-    @ManyToOne
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne
     @JoinColumn(name = "u_id")
     private User owner;
+
+    ///////////////// ADMIN ROLES /////////////////
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "trade", fetch = FetchType.EAGER)
+    private Address address;
 
 }
