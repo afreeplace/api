@@ -9,6 +9,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @ToString
 @Getter
@@ -40,7 +42,7 @@ public class  Trade {
 
     @NotBlank(message = "Description must not be blank")
     @Size(min = 2, max = 200)
-    @Column(name = "description", length = 200, nullable = false)
+       @Column(name = "description", length = 200, nullable = false)
     private String description;
 
     @Size(min = 2, max = 255)
@@ -72,5 +74,11 @@ public class  Trade {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "trade", fetch = FetchType.EAGER)
     private Address address;
+
+    ///////////////// Addresses /////////////////
+
+    @OneToMany(mappedBy = "trade", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Photo> photos = new ArrayList<>();
+
 
 }

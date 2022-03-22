@@ -29,7 +29,9 @@ public class PhotoController {
     public ResponseEntity<Map<String, Object>> createPhoto(@Valid @RequestBody Photo photo, BindingResult bindingResult) {
         Map result = ResponseObject.map();
         BindingResultWrapper.checkFormErrors(bindingResult);
-        photoManager.create(photo);
+        int photoId = photoManager.create(photo);
+
+        result.put("photo", photoManager.find(photoId));
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

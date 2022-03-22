@@ -59,11 +59,6 @@ public class User implements Serializable {
     )
     private List <Role> roles = new ArrayList<>();
 
-    ///////////////// Photos /////////////////
-
-    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
-    private List<Photo> marketplaces = new ArrayList<>();
-
     ///////////////// CONSTRUCTORS /////////////////
 
     public User() {
