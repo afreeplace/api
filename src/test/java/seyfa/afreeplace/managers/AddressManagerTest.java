@@ -77,12 +77,16 @@ public class AddressManagerTest {
 
     @Test
     public void deleteExistingAddressWorks() throws Exception {
+        Trade trade = TradeBuilderTest.create(tradeRepository, "Seyfa tech", Trade.Status.VALIDATED);
         Address address = geocodingService.findByAddress("51 Rue de Rivoli").get(0);
+
+        address.setTrade(trade);
         addressId = AddressBuilderTest.create(addressRepository, address).getId();
 
         addressManager.delete(addressId);
 
         assertNull(addressRepository.findById(addressId).orElse(null));
+        TradeBuilderTest.delete(trade.getId(), tradeRepository);
     }
 
     @Test

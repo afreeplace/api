@@ -67,6 +67,13 @@ public class AddressManager implements IManager<Address, Integer> {
     @Override
     public void delete(Integer addressId) throws ManagerException {
         Address address = addressRepository.findById(addressId).orElseThrow(() -> new ManagerException(ExceptionConstants.addressNotFound()));
+
+        if(address.getTrade() != null) {
+            Trade trade = tradeRepository.findById(address.getTrade().getId()).orElseThrow(() -> new ManagerException(ExceptionConstants.tradeNotFound()));
+            trade.setAddress(null);
+        }
+
+        address.setTrade(null);
         addressRepository.delete(address);
     }
 }

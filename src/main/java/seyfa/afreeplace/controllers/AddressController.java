@@ -1,5 +1,7 @@
 package seyfa.afreeplace.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("address")
 public class AddressController {
+
+    Logger logger = LoggerFactory.getLogger(AddressController.class);
 
     @Autowired
     AddressManager addressManager;
@@ -46,9 +50,7 @@ public class AddressController {
     @GetMapping("/delete/{addressId}")
     public ResponseEntity<Map<String, Object>> deleteAddress(@PathVariable("addressId") int addressId) {
         Map result = ResponseObject.map();
-
         addressManager.delete(addressId);
-
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
