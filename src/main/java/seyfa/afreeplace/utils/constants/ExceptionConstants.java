@@ -11,6 +11,9 @@ public class ExceptionConstants {
     }
 
     public static String addressNotFound() { return "L'adresse spécifiée est inexistante"; }
+    public static String photoNotFound() { return "La photo spécifiée est inexistante"; }
+    public static String categoryNotFound() { return "La categorie spécifiée est inexistante"; }
+    public static String tagNotFound() { return "Le tag spécifié est inexistante"; }
     public static String formErrors() {
         return "Erreur de formulaire, veuillez vérifier vos données";
     }

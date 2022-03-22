@@ -67,7 +67,7 @@ public class  Trade {
     @JoinColumn(name = "u_id")
     private User owner;
 
-    ///////////////// ADMIN ROLES /////////////////
+    ///////////////// Addresses /////////////////
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "trade", fetch = FetchType.EAGER)
