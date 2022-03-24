@@ -15,10 +15,16 @@ import seyfa.afreeplace.Application;
 import seyfa.afreeplace.entities.business.Trade;
 import seyfa.afreeplace.entities.business.User;
 import seyfa.afreeplace.exceptions.ManagerException;
+import seyfa.afreeplace.repositories.TagRepository;
 import seyfa.afreeplace.repositories.TradeRepository;
 import seyfa.afreeplace.repositories.UserRepository;
+import seyfa.afreeplace.utils.TagBuilderTest;
 import seyfa.afreeplace.utils.TradeBuilderTest;
 import seyfa.afreeplace.utils.UserBuilderTest;
+
+import javax.transaction.Transactional;
+
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,21 +40,31 @@ public class TradeControllerTest {
     TradeRepository tradeRepository;
 
     @Autowired
+    TagRepository tagRepository;
+
+    @Autowired
     UserRepository userRepository;
 
-    int tradeId, secondTradeId;
+    int tradeId, secondTradeId, userId;
+    int tagId1, tagId2;
     String name = "Seyfa Tech";
     Trade.Status status = Trade.Status.REQUESTED;
 
     @BeforeEach
     public void before() {
         tradeId = TradeBuilderTest.create(tradeRepository, name, status).getId();
+        tagId1 = TagBuilderTest.create(tagRepository, "Tag1").getId();
+        tagId2 = TagBuilderTest.create(tagRepository, "Tag2").getId();
     }
 
     @AfterEach
     public void after() {
         TradeBuilderTest.delete(tradeId, tradeRepository);
         TradeBuilderTest.delete(secondTradeId, tradeRepository);
+
+        UserBuilderTest.delete(userId, userRepository);
+        TagBuilderTest.delete(tagId1, tagRepository);
+        TagBuilderTest.delete(tagId2, tagRepository);
     }
 
     @Test
@@ -127,5 +143,34 @@ public class TradeControllerTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     }
 
+    @Transactional
+    @Test
+    public void addTagToTrade() {
+        User owner = UserBuilderTest.create(userRepository, "Fallou@test.fr", "Seye");
+
+        Trade trade = TradeBuilderTest.create(tradeRepository, "SeyfaTech3", Trade.Status.VALIDATED);
+        trade.setOwner(owner);
+
+        // add tag to trade
+        ResponseEntity<Map<String, Object>> response = tradeController.addTag(tradeId, tagId1);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+
+        ResponseEntity<Map<String, Object>> response3 = tradeController.addTag(tradeId, tagId2);
+        assertEquals(HttpStatus.OK, response3.getStatusCode());
+
+        assertEquals(2, tradeRepository.findById(tradeId).orElse(null).getTags().size());
+
+        // remove tafs
+        ResponseEntity<Map<String, Object>> response4 = tradeController.removeTag(tradeId, tagId1);
+        assertEquals(HttpStatus.OK, response4.getStatusCode());
+        assertEquals(1, tradeRepository.findById(tradeId).orElse(null).getTags().size());
+
+        ResponseEntity<Map<String, Object>> response5 = tradeController.removeTag(tradeId, tagId2);
+        assertEquals(HttpStatus.OK, response5.getStatusCode());
+        assertEquals(0, tradeRepository.findById(tradeId).orElse(null).getTags().size());
+
+        assertNotNull(tagRepository.findById(tagId1).orElse(null));
+        assertNotNull(tagRepository.findById(tagId2).orElse(null));
+    }
 
 }

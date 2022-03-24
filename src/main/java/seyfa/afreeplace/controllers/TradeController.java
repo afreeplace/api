@@ -27,7 +27,7 @@ public class TradeController {
         BindingResultWrapper.checkFormErrors(bindingResult);
 
         int tradeId = tradeManager.create(trade);
-        Trade createdTrade =  tradeManager.find(tradeId);
+        Trade createdTrade = tradeManager.find(tradeId);
 
         result.put("trade", createdTrade);
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -53,5 +53,28 @@ public class TradeController {
         result.put("message", "App Starter is working");
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
+    @GetMapping("/{tradeId}/tag/add//{tagId}")
+    public ResponseEntity<Map<String, Object>> addTag(
+            @PathVariable("tradeId") int tradeId,
+            @PathVariable("tagId") int tagId) {
+        Map result = new HashMap();
+
+        tradeManager.addTag(tradeId, tagId);
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @GetMapping("/{tradeId}/tag/remove//{tagId}")
+    public ResponseEntity<Map<String, Object>> removeTag(
+            @PathVariable("tradeId") int tradeId,
+            @PathVariable("tagId") int tagId) {
+        Map result = new HashMap();
+
+        tradeManager.removeTag(tradeId, tagId);
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
 
 }

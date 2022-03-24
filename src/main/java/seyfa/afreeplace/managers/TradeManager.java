@@ -4,9 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import seyfa.afreeplace.entities.business.Tag;
 import seyfa.afreeplace.entities.business.Trade;
 import seyfa.afreeplace.entities.business.User;
 import seyfa.afreeplace.exceptions.ManagerException;
+import seyfa.afreeplace.repositories.TagRepository;
 import seyfa.afreeplace.repositories.TradeRepository;
 import seyfa.afreeplace.repositories.UserRepository;
 import seyfa.afreeplace.utils.constants.ExceptionConstants;
@@ -25,6 +27,9 @@ public class TradeManager implements IManager<Trade, Integer> {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    TagRepository tagRepository;
 
     @Override
     public Trade find(Integer id) throws ManagerException {
@@ -77,6 +82,24 @@ public class TradeManager implements IManager<Trade, Integer> {
         // TODO : add business rules
         Trade trade = tradeRepository.findById(id).orElseThrow(() -> new ManagerException(ExceptionConstants.tradeNotFound()));
         tradeRepository.delete(trade);
+    }
+
+    public void addTag(int tradeId, int tagId) {
+        Trade trade = tradeRepository.findById(tradeId).orElseThrow(() -> new ManagerException(ExceptionConstants.tradeNotFound()));
+        Tag tag = tagRepository.findById(tagId).orElseThrow(() -> new ManagerException(ExceptionConstants.tagNotFound()));
+
+        if(!trade.getTags().contains(tag)) {
+            trade.getTags().add(tag);
+        }
+    }
+
+    public void removeTag(int tradeId, int tagId) {
+        Trade trade = tradeRepository.findById(tradeId).orElseThrow(() -> new ManagerException(ExceptionConstants.tradeNotFound()));
+        Tag tag = tagRepository.findById(tagId).orElseThrow(() -> new ManagerException(ExceptionConstants.tagNotFound()));
+
+        if(trade.getTags().contains(tag)) {
+            trade.getTags().remove(tag);
+        }
     }
 
 }

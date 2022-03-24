@@ -11,10 +11,14 @@ import seyfa.afreeplace.Application;
 import seyfa.afreeplace.entities.business.Trade;
 import seyfa.afreeplace.entities.business.User;
 import seyfa.afreeplace.exceptions.ManagerException;
+import seyfa.afreeplace.repositories.TagRepository;
 import seyfa.afreeplace.repositories.TradeRepository;
 import seyfa.afreeplace.repositories.UserRepository;
+import seyfa.afreeplace.utils.TagBuilderTest;
 import seyfa.afreeplace.utils.TradeBuilderTest;
 import seyfa.afreeplace.utils.UserBuilderTest;
+
+import javax.transaction.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,19 +36,29 @@ public class TradeManagerTest {
     @Autowired
     TradeRepository tradeRepository;
 
-    int tradeId, secondTradeId;
+    @Autowired
+    TagRepository tagRepository;
+
+    int tradeId, secondTradeId, userId;
+    int tagId1, tagId2;
     String name = "Seyfa Tech";
     Trade.Status status = Trade.Status.REQUESTED;
 
     @BeforeEach
     public void before() {
         tradeId = TradeBuilderTest.create(tradeRepository, name, status).getId();
+        tagId1 = TagBuilderTest.create(tagRepository, "Tag1").getId();
+        tagId2 = TagBuilderTest.create(tagRepository, "Tag2").getId();
     }
 
     @AfterEach
     public void after() {
         TradeBuilderTest.delete(tradeId, tradeRepository);
         TradeBuilderTest.delete(secondTradeId, tradeRepository);
+        UserBuilderTest.delete(userId, userRepository);
+
+        TagBuilderTest.delete(tagId1, tagRepository);
+        TagBuilderTest.delete(tagId2, tagRepository);
     }
 
     @Test
@@ -117,6 +131,28 @@ public class TradeManagerTest {
     public void deleteWorks() {
         tradeManager.delete(tradeId);
         assertNull(tradeRepository.findById(tradeId).orElse(null));
+    }
+
+    @Transactional
+    @Test
+    public void addTagToTrade() {
+        User owner = UserBuilderTest.create(userRepository, "Fallou@test.fr", "Seye");
+
+        Trade trade = TradeBuilderTest.create(tradeRepository, "SeyfaTech3", Trade.Status.VALIDATED);
+        trade.setOwner(owner);
+
+        tradeManager.addTag(tradeId, tagId1);
+        tradeManager.addTag(tradeId, tagId2);
+        assertEquals(2, tradeRepository.findById(tradeId).orElse(null).getTags().size());
+
+        tradeManager.removeTag(tradeId, tagId1);
+        assertEquals(1, tradeRepository.findById(tradeId).orElse(null).getTags().size());
+
+        tradeManager.removeTag(tradeId, tagId2);
+        assertEquals(0, tradeRepository.findById(tradeId).orElse(null).getTags().size());
+
+        assertNotNull(tagRepository.findById(tagId1).orElse(null));
+        assertNotNull(tagRepository.findById(tagId2).orElse(null));
     }
 
 }
