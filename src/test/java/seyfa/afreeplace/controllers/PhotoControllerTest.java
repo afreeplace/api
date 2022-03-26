@@ -29,7 +29,7 @@ public class PhotoControllerTest {
 
 
     @Autowired
-    PhotoController photoController;
+    TradeController photoController;
 
     @Autowired
     TradeRepository tradeRepository;

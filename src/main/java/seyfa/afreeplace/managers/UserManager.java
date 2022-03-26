@@ -26,7 +26,7 @@ public class UserManager implements IManager<User, Integer> {
 
         user.getTrades().forEach(trade -> {
             trade.getTags().size();
-            trade.getPhotos().size();
+            trade.getPictures().size();
         });
 
         return user;

@@ -5,7 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import seyfa.afreeplace.entities.business.Photo;
 import seyfa.afreeplace.entities.business.Trade;
+import seyfa.afreeplace.managers.PhotoManager;
 import seyfa.afreeplace.managers.TradeManager;
 import seyfa.afreeplace.utils.response.BindingResultWrapper;
 import seyfa.afreeplace.utils.response.ResponseObject;
@@ -20,6 +22,9 @@ public class TradeController {
 
     @Autowired
     TradeManager tradeManager;
+
+    @Autowired
+    PhotoManager photoManager;
 
     @PostMapping("/create")
     public ResponseEntity<Map<String, Object>> createTrade(@Valid @RequestBody Trade trade, BindingResult bindingResult) {
@@ -94,6 +99,23 @@ public class TradeController {
         Map result = new HashMap();
 
         tradeManager.removeCategory(tradeId, categoryId);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @PostMapping("/picture/add")
+    public ResponseEntity<Map<String, Object>> createPhoto(@Valid @RequestBody Photo photo, BindingResult bindingResult) {
+        Map result = ResponseObject.map();
+        BindingResultWrapper.checkFormErrors(bindingResult);
+        int photoId = photoManager.create(photo);
+
+        result.put("photo", photoManager.find(photoId));
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @GetMapping("/picture/delete/{photoId}")
+    public ResponseEntity<Map<String, Object>> deletePhoto(@PathVariable("photoId") int photoId) {
+        Map result = ResponseObject.map();
+        photoManager.delete(photoId);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
