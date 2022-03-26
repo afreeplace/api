@@ -44,8 +44,6 @@ public class Application {
 	@PreDestroy
 	public void pre() {
 		geoApiContext.shutdown();
-		logger.info("GeoApiContext shut down success");
-
 		endActions.executeActions();
 	}
 

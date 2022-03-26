@@ -67,7 +67,6 @@ public class TagController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-
     @GetMapping("/find/all")
     public ResponseEntity<Map<String, Object>> findAllTags() {
         Map result = ResponseObject.map();

@@ -87,7 +87,7 @@ public class TradeController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @GetMapping("/{tradeId}/category/remove/{tagId}")
+    @GetMapping("/{tradeId}/category/remove/{categoryId}")
     public ResponseEntity<Map<String, Object>> removeCategory(
             @PathVariable("tradeId") int tradeId,
             @PathVariable("categoryId") int categoryId) {
