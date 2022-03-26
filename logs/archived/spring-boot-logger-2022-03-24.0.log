@@ -1,0 +1,160 @@
+2022-03-24 01:10:32,826 ERROR seyfa.afreeplace.exceptions.handler.ExceptionManager [http-nio-8000-exec-5] Exception: org.springframework.security.authentication.InternalAuthenticationServiceException: L'utilisateur demandé n'existe pas
+2022-03-24 01:10:41,405 INFO seyfa.afreeplace.Application [SpringApplicationShutdownHook] GeoApiContext shut down success
+2022-03-24 01:10:41,407 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-03-24 01:10:41,414 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-03-24 01:10:41,425 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-03-24 01:11:08,557 INFO org.springframework.boot.StartupInfoLogger [main] Starting Application using Java 11.0.13 on fat with PID 16824 (/home/fallou/mywork/afp/api/target/classes started by fallou in /home/fallou/mywork/afp/api)
+2022-03-24 01:11:08,556 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-03-24 01:11:08,561 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-03-24 01:11:08,563 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-03-24 01:11:09,903 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-03-24 01:11:09,989 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 72 ms. Found 5 JPA repository interfaces.
+2022-03-24 01:11:10,913 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8000 (http)
+2022-03-24 01:11:10,936 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8000"]
+2022-03-24 01:11:10,937 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-03-24 01:11:10,937 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-24 01:11:11,071 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-03-24 01:11:11,072 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2414 ms
+2022-03-24 01:11:11,289 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-03-24 01:11:11,398 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-03-24 01:11:11,606 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-03-24 01:11:11,737 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-03-24 01:11:12,235 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-03-24 01:11:12,272 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2022-03-24 01:11:13,756 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-03-24 01:11:13,763 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-03-24 01:11:14,466 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authFilter' configured for use
+2022-03-24 01:11:14,615 INFO seyfa.afreeplace.configuration.GoogleGeocodingConfiguration [main] GeoApiContext initialized com.google.maps.GeoApiContext@261099e1
+2022-03-24 01:11:14,627 INFO seyfa.afreeplace.Application [main] API: 'Afreeplace', Environment: 'Default' 
+2022-03-24 01:11:14,629 INFO seyfa.afreeplace.utils.lifecycle.jobs.bootstrap.BoostrapLoggerJob [main] Application Started
+2022-03-24 01:11:14,697 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-03-24 01:11:15,287 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-03-24 01:11:15,594 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8000"]
+2022-03-24 01:11:15,615 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8000 (http) with context path ''
+2022-03-24 01:11:15,630 INFO org.springframework.boot.StartupInfoLogger [main] Started Application in 7.887 seconds (JVM running for 9.006)
+2022-03-24 01:12:50,224 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8000-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-24 01:12:50,224 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8000-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-03-24 01:12:50,226 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8000-exec-1] Completed initialization in 1 ms
+2022-03-24 01:12:50,729 ERROR seyfa.afreeplace.exceptions.handler.ExceptionManager [http-nio-8000-exec-1] Exception: org.springframework.security.authentication.InternalAuthenticationServiceException: L'utilisateur demandé n'existe pas
+2022-03-24 01:13:18,419 INFO seyfa.afreeplace.managers.TradeManager [http-nio-8000-exec-4] Trade Trade(id=0, name=SeyfaTech, phoneNumber=06.47.10.13.19, description=Vente de logiciel informatique en ligne, Merci de contacter, websiteUrl=null, logoUrl=null, available=false, status=null, creationDate=null, owner=User(id=1, firstname=null, lastname=null, email=null, password=null, creationDate=null, trades=[], roles=[]), address=null, photos=[], tags=[])
+2022-03-24 01:13:18,475 ERROR seyfa.afreeplace.exceptions.handler.ExceptionManager [http-nio-8000-exec-4] ERROR URI /trade/create
+2022-03-24 01:13:18,477 ERROR seyfa.afreeplace.exceptions.handler.ExceptionManager [http-nio-8000-exec-4] Exception: seyfa.afreeplace.exceptions.ManagerException: L'utilisateur demandé n'existe pas
+2022-03-24 01:13:34,347 INFO seyfa.afreeplace.managers.TradeManager [http-nio-8000-exec-6] Trade Trade(id=0, name=SeyfaTech, phoneNumber=06.47.10.13.19, description=Vente de logiciel informatique en ligne, Merci de contacter, websiteUrl=null, logoUrl=null, available=false, status=null, creationDate=null, owner=User(id=200, firstname=null, lastname=null, email=null, password=null, creationDate=null, trades=[], roles=[]), address=null, photos=[], tags=[])
+2022-03-24 01:13:34,351 ERROR seyfa.afreeplace.exceptions.handler.ExceptionManager [http-nio-8000-exec-6] ERROR URI /trade/create
+2022-03-24 01:13:34,353 ERROR seyfa.afreeplace.exceptions.handler.ExceptionManager [http-nio-8000-exec-6] Exception: seyfa.afreeplace.exceptions.ManagerException: L'utilisateur demandé n'existe pas
+2022-03-24 01:13:56,349 INFO seyfa.afreeplace.managers.TradeManager [http-nio-8000-exec-8] Trade Trade(id=0, name=SeyfaTech, phoneNumber=06.47.10.13.19, description=Vente de logiciel informatique en ligne, Merci de contacter, websiteUrl=null, logoUrl=null, available=false, status=null, creationDate=null, owner=User(id=260, firstname=null, lastname=null, email=null, password=null, creationDate=null, trades=[], roles=[]), address=null, photos=[], tags=[])
+2022-03-24 01:13:56,366 INFO seyfa.afreeplace.managers.TradeManager [http-nio-8000-exec-8] Manager created thade {}
+2022-03-24 01:21:00,030 INFO seyfa.afreeplace.Application [SpringApplicationShutdownHook] GeoApiContext shut down success
+2022-03-24 01:21:00,032 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-03-24 01:21:00,033 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-03-24 01:21:00,040 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-03-24 01:21:05,710 INFO org.springframework.boot.StartupInfoLogger [main] Starting Application using Java 11.0.13 on fat with PID 17764 (/home/fallou/mywork/afp/api/target/classes started by fallou in /home/fallou/mywork/afp/api)
+2022-03-24 01:21:05,714 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-03-24 01:21:05,715 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-03-24 01:21:05,717 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-03-24 01:21:06,875 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-03-24 01:21:06,963 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 80 ms. Found 5 JPA repository interfaces.
+2022-03-24 01:21:07,847 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8000 (http)
+2022-03-24 01:21:07,858 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8000"]
+2022-03-24 01:21:07,859 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-03-24 01:21:07,859 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-24 01:21:07,953 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-03-24 01:21:07,954 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2162 ms
+2022-03-24 01:21:08,215 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-03-24 01:21:08,270 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-03-24 01:21:08,435 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-03-24 01:21:08,537 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-03-24 01:21:08,995 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-03-24 01:21:09,020 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2022-03-24 01:21:10,313 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-03-24 01:21:10,328 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-03-24 01:21:10,906 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authFilter' configured for use
+2022-03-24 01:21:11,124 INFO seyfa.afreeplace.configuration.GoogleGeocodingConfiguration [main] GeoApiContext initialized com.google.maps.GeoApiContext@57ed8f95
+2022-03-24 01:21:11,131 INFO seyfa.afreeplace.Application [main] API: 'Afreeplace', Environment: 'Default' 
+2022-03-24 01:21:11,132 INFO seyfa.afreeplace.utils.lifecycle.jobs.bootstrap.BoostrapLoggerJob [main] Application Started
+2022-03-24 01:21:11,186 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-03-24 01:21:11,758 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-03-24 01:21:12,154 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8000"]
+2022-03-24 01:21:12,182 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8000 (http) with context path ''
+2022-03-24 01:21:12,198 INFO org.springframework.boot.StartupInfoLogger [main] Started Application in 7.382 seconds (JVM running for 8.424)
+2022-03-24 01:21:20,366 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8000-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-24 01:21:20,367 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8000-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-03-24 01:21:20,368 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8000-exec-1] Completed initialization in 1 ms
+2022-03-24 01:21:20,697 ERROR seyfa.afreeplace.exceptions.handler.ExceptionManager [http-nio-8000-exec-1] ERROR URI /trade/260/tag/add/1
+2022-03-24 01:21:20,701 ERROR seyfa.afreeplace.exceptions.handler.ExceptionManager [http-nio-8000-exec-1] Exception: seyfa.afreeplace.exceptions.ManagerException: Le trade demandé n'existe pas
+2022-03-24 01:21:39,097 ERROR seyfa.afreeplace.exceptions.handler.ExceptionManager [http-nio-8000-exec-3] ERROR URI /trade/264/tag/add/1
+2022-03-24 01:21:39,100 ERROR seyfa.afreeplace.exceptions.handler.ExceptionManager [http-nio-8000-exec-3] Exception: seyfa.afreeplace.exceptions.ManagerException: Le tag spécifié est inexistante
+2022-03-24 01:21:39,862 ERROR seyfa.afreeplace.exceptions.handler.ExceptionManager [http-nio-8000-exec-4] ERROR URI /trade/264/tag/add/1
+2022-03-24 01:21:39,865 ERROR seyfa.afreeplace.exceptions.handler.ExceptionManager [http-nio-8000-exec-4] Exception: seyfa.afreeplace.exceptions.ManagerException: Le tag spécifié est inexistante
+2022-03-24 01:25:52,919 INFO seyfa.afreeplace.Application [SpringApplicationShutdownHook] GeoApiContext shut down success
+2022-03-24 01:25:52,926 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-03-24 01:25:52,930 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-03-24 01:25:52,944 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-03-24 01:25:58,388 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-03-24 01:25:58,395 INFO org.springframework.boot.StartupInfoLogger [main] Starting Application using Java 11.0.13 on fat with PID 18243 (/home/fallou/mywork/afp/api/target/classes started by fallou in /home/fallou/mywork/afp/api)
+2022-03-24 01:25:58,397 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-03-24 01:25:58,398 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-03-24 01:25:59,651 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-03-24 01:25:59,776 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 115 ms. Found 5 JPA repository interfaces.
+2022-03-24 01:26:00,778 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8000 (http)
+2022-03-24 01:26:00,789 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8000"]
+2022-03-24 01:26:00,790 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-03-24 01:26:00,790 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-24 01:26:00,910 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-03-24 01:26:00,911 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2411 ms
+2022-03-24 01:26:01,159 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-03-24 01:26:01,260 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-03-24 01:26:01,492 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-03-24 01:26:01,604 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-03-24 01:26:02,075 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-03-24 01:26:02,106 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2022-03-24 01:26:03,599 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-03-24 01:26:03,620 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-03-24 01:26:04,285 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authFilter' configured for use
+2022-03-24 01:26:04,447 INFO seyfa.afreeplace.configuration.GoogleGeocodingConfiguration [main] GeoApiContext initialized com.google.maps.GeoApiContext@78b2d29e
+2022-03-24 01:26:04,453 INFO seyfa.afreeplace.Application [main] API: 'Afreeplace', Environment: 'Default' 
+2022-03-24 01:26:04,454 INFO seyfa.afreeplace.utils.lifecycle.jobs.bootstrap.BoostrapLoggerJob [main] Application Started
+2022-03-24 01:26:04,531 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-03-24 01:26:05,123 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-03-24 01:26:05,450 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8000"]
+2022-03-24 01:26:05,467 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8000 (http) with context path ''
+2022-03-24 01:26:05,482 INFO org.springframework.boot.StartupInfoLogger [main] Started Application in 7.89 seconds (JVM running for 8.899)
+2022-03-24 01:26:10,224 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8000-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-24 01:26:10,225 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8000-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-03-24 01:26:10,227 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8000-exec-1] Completed initialization in 2 ms
+2022-03-24 01:29:45,276 INFO seyfa.afreeplace.Application [SpringApplicationShutdownHook] GeoApiContext shut down success
+2022-03-24 01:29:45,277 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-03-24 01:29:45,279 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-03-24 01:29:45,287 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-03-24 01:29:50,766 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.2.Final
+2022-03-24 01:29:50,770 INFO org.springframework.boot.StartupInfoLogger [main] Starting Application using Java 11.0.13 on fat with PID 18705 (/home/fallou/mywork/afp/api/target/classes started by fallou in /home/fallou/mywork/afp/api)
+2022-03-24 01:29:50,772 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-03-24 01:29:50,773 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-03-24 01:29:52,090 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-03-24 01:29:52,160 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 60 ms. Found 5 JPA repository interfaces.
+2022-03-24 01:29:53,187 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8000 (http)
+2022-03-24 01:29:53,203 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8000"]
+2022-03-24 01:29:53,203 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-03-24 01:29:53,204 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-24 01:29:53,336 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-03-24 01:29:53,338 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2473 ms
+2022-03-24 01:29:53,601 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-03-24 01:29:53,702 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-03-24 01:29:53,918 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-03-24 01:29:54,036 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-03-24 01:29:54,525 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-03-24 01:29:54,557 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2022-03-24 01:29:55,971 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-03-24 01:29:55,989 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-03-24 01:29:56,571 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authFilter' configured for use
+2022-03-24 01:29:56,739 INFO seyfa.afreeplace.configuration.GoogleGeocodingConfiguration [main] GeoApiContext initialized com.google.maps.GeoApiContext@192ecf8
+2022-03-24 01:29:56,747 INFO seyfa.afreeplace.Application [main] API: 'Afreeplace', Environment: 'Default' 
+2022-03-24 01:29:56,748 INFO seyfa.afreeplace.utils.lifecycle.jobs.bootstrap.BoostrapLoggerJob [main] Application Started
+2022-03-24 01:29:56,815 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-03-24 01:29:57,342 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure any request
+2022-03-24 01:29:57,696 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8000"]
+2022-03-24 01:29:57,722 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8000 (http) with context path ''
+2022-03-24 01:29:57,741 INFO org.springframework.boot.StartupInfoLogger [main] Started Application in 7.86 seconds (JVM running for 8.826)
+2022-03-24 01:30:07,383 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8000-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-24 01:30:07,383 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8000-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-03-24 01:30:07,385 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8000-exec-1] Completed initialization in 1 ms

@@ -80,7 +80,7 @@ public class  Trade {
     @OneToMany(mappedBy = "trade", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Photo> photos = new ArrayList<>();
 
-    ///////////////// ADMIN ROLES /////////////////
+    ///////////////// Tags /////////////////
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -89,5 +89,16 @@ public class  Trade {
             inverseJoinColumns = @JoinColumn(name = "tg_id")
     )
     private List <Tag> tags = new ArrayList<>();
+
+
+    ///////////////// Category /////////////////
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "trade_category",
+            joinColumns = @JoinColumn(name = "tr_id"),
+            inverseJoinColumns = @JoinColumn(name = "cat_id")
+    )
+    private List <Category> categories = new ArrayList<>();
 
 }

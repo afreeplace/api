@@ -8,17 +8,22 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import seyfa.afreeplace.Application;
+import seyfa.afreeplace.entities.business.Category;
 import seyfa.afreeplace.entities.business.Trade;
 import seyfa.afreeplace.entities.business.User;
 import seyfa.afreeplace.exceptions.ManagerException;
+import seyfa.afreeplace.repositories.CategoryRepository;
 import seyfa.afreeplace.repositories.TagRepository;
 import seyfa.afreeplace.repositories.TradeRepository;
 import seyfa.afreeplace.repositories.UserRepository;
+import seyfa.afreeplace.utils.CategoryBuilderTest;
 import seyfa.afreeplace.utils.TagBuilderTest;
 import seyfa.afreeplace.utils.TradeBuilderTest;
 import seyfa.afreeplace.utils.UserBuilderTest;
 
 import javax.transaction.Transactional;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,8 +44,12 @@ public class TradeManagerTest {
     @Autowired
     TagRepository tagRepository;
 
+    @Autowired
+    CategoryRepository categoryRepository;
+
     int tradeId, secondTradeId, userId;
     int tagId1, tagId2;
+    int catId1, catId2;
     String name = "Seyfa Tech";
     Trade.Status status = Trade.Status.REQUESTED;
 
@@ -49,16 +58,21 @@ public class TradeManagerTest {
         tradeId = TradeBuilderTest.create(tradeRepository, name, status).getId();
         tagId1 = TagBuilderTest.create(tagRepository, "Tag1").getId();
         tagId2 = TagBuilderTest.create(tagRepository, "Tag2").getId();
+        catId1 = CategoryBuilderTest.create(categoryRepository, "Categprie 1").getId();
+        catId2 = CategoryBuilderTest.create(categoryRepository, "Categprie 2").getId();
     }
 
     @AfterEach
     public void after() {
+        UserBuilderTest.delete(userId, userRepository);
         TradeBuilderTest.delete(tradeId, tradeRepository);
         TradeBuilderTest.delete(secondTradeId, tradeRepository);
-        UserBuilderTest.delete(userId, userRepository);
 
         TagBuilderTest.delete(tagId1, tagRepository);
         TagBuilderTest.delete(tagId2, tagRepository);
+
+        CategoryBuilderTest.delete(catId1, categoryRepository);
+        CategoryBuilderTest.delete(catId2, categoryRepository);
     }
 
     @Test
@@ -155,4 +169,26 @@ public class TradeManagerTest {
         assertNotNull(tagRepository.findById(tagId2).orElse(null));
     }
 
+    @Test
+    @Transactional
+    public void addCategoryToTrade() {
+        User owner = UserBuilderTest.create(userRepository, "Fallou@test.fr", "Seye");
+
+        Trade trade = TradeBuilderTest.create(tradeRepository, "SeyfaTech3", Trade.Status.VALIDATED);
+        trade.setOwner(owner);
+
+        tradeManager.addCategory(tradeId, catId1);
+        tradeManager.addCategory(tradeId, catId2);
+
+        assertEquals(2, tradeRepository.findById(tradeId).orElse(null).getCategories().size());
+
+        tradeManager.removeCategory(tradeId, catId1);
+        assertEquals(1, tradeRepository.findById(tradeId).orElse(null).getCategories().size());
+
+        tradeManager.removeCategory(tradeId, catId2);
+        assertEquals(0, tradeRepository.findById(tradeId).orElse(null).getCategories().size());
+
+        assertNotNull(categoryRepository.findById(catId1).orElse(null));
+        assertNotNull(categoryRepository.findById(catId2).orElse(null));
+    }
 }

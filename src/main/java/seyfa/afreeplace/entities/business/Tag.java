@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @ToString
 @Getter
@@ -36,5 +37,14 @@ public class Tag {
 
     @Column(name = "creationDate", nullable = false)
     private LocalDateTime creationDate;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tag tag = (Tag) o;
+        return id == tag.id && Objects.equals(name, tag.name);
+    }
+
 
 }

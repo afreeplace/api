@@ -54,7 +54,7 @@ public class TradeController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @GetMapping("/{tradeId}/tag/add//{tagId}")
+    @GetMapping("/{tradeId}/tag/add/{tagId}")
     public ResponseEntity<Map<String, Object>> addTag(
             @PathVariable("tradeId") int tradeId,
             @PathVariable("tagId") int tagId) {
@@ -65,7 +65,7 @@ public class TradeController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @GetMapping("/{tradeId}/tag/remove//{tagId}")
+    @GetMapping("/{tradeId}/tag/remove/{tagId}")
     public ResponseEntity<Map<String, Object>> removeTag(
             @PathVariable("tradeId") int tradeId,
             @PathVariable("tagId") int tagId) {
@@ -76,5 +76,25 @@ public class TradeController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @GetMapping("/{tradeId}/category/add/{categoryId}")
+    public ResponseEntity<Map<String, Object>> addCategory(
+            @PathVariable("tradeId") int tradeId,
+            @PathVariable("categoryId") int categoryId) {
+        Map result = new HashMap();
+
+        tradeManager.addCategory(tradeId, categoryId);
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @GetMapping("/{tradeId}/category/remove/{tagId}")
+    public ResponseEntity<Map<String, Object>> removeCategory(
+            @PathVariable("tradeId") int tradeId,
+            @PathVariable("categoryId") int categoryId) {
+        Map result = new HashMap();
+
+        tradeManager.removeCategory(tradeId, categoryId);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 
 }

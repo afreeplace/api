@@ -4,10 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import seyfa.afreeplace.entities.business.Category;
 import seyfa.afreeplace.entities.business.Tag;
 import seyfa.afreeplace.entities.business.Trade;
 import seyfa.afreeplace.entities.business.User;
 import seyfa.afreeplace.exceptions.ManagerException;
+import seyfa.afreeplace.repositories.CategoryRepository;
 import seyfa.afreeplace.repositories.TagRepository;
 import seyfa.afreeplace.repositories.TradeRepository;
 import seyfa.afreeplace.repositories.UserRepository;
@@ -30,6 +32,9 @@ public class TradeManager implements IManager<Trade, Integer> {
 
     @Autowired
     TagRepository tagRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @Override
     public Trade find(Integer id) throws ManagerException {
@@ -99,6 +104,26 @@ public class TradeManager implements IManager<Trade, Integer> {
 
         if(trade.getTags().contains(tag)) {
             trade.getTags().remove(tag);
+        }
+    }
+
+    public void addCategory(int tradeId, int categoryId) {
+        Trade trade = tradeRepository.findById(tradeId).orElseThrow(() -> new ManagerException(ExceptionConstants.tradeNotFound()));
+        Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new ManagerException(ExceptionConstants.categoryNotFound()));
+
+        if(!trade.getCategories().contains(category)) {
+            trade.getCategories().add(category);
+            logger.info("Category '{}' added to trade '{}'", categoryId, tradeId);
+        }
+    }
+
+    public void removeCategory(int tradeId, int categoryId) {
+        Trade trade = tradeRepository.findById(tradeId).orElseThrow(() -> new ManagerException(ExceptionConstants.tradeNotFound()));
+        Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new ManagerException(ExceptionConstants.tagNotFound()));
+
+        if(trade.getCategories().contains(category)) {
+            trade.getCategories().remove(category);
+            logger.info("Category '{}' removed from trade '{}'", categoryId, tradeId);
         }
     }
 

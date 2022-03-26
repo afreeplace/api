@@ -22,7 +22,14 @@ public class UserManager implements IManager<User, Integer> {
 
     @Override
     public User find(Integer id) throws ManagerException {
-        return userRepository.findById(id).orElseThrow(() -> new ManagerException(ExceptionConstants.userNotFound()));
+        User user = userRepository.findById(id).orElseThrow(() -> new ManagerException(ExceptionConstants.userNotFound()));
+
+        user.getTrades().forEach(trade -> {
+            trade.getTags().size();
+            trade.getPhotos().size();
+        });
+
+        return user;
     }
 
     public User find(String email) throws ManagerException {

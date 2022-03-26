@@ -14,5 +14,4 @@ app:
   profile: Default
   geocoding:
     google:
-      url: https://maps.googleapis.com/maps/api/geocode/json?FILTER=REQUESTED_ADDRESS&key=AFREEPLACE_GEOCODING_KEY
       key: AIzaSyDnfRGUKQvlZyDNoA2t33muEu7dn8r14AQ

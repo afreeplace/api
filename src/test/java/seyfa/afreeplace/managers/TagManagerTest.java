@@ -5,11 +5,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import seyfa.afreeplace.entities.business.Tag;
 import seyfa.afreeplace.repositories.TagRepository;
 import seyfa.afreeplace.utils.TagBuilderTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class TagManagerTest {
@@ -34,6 +36,10 @@ public class TagManagerTest {
         TagBuilderTest.delete(tagId1, tagRepository);
         TagBuilderTest.delete(tagId3, tagRepository);
         TagBuilderTest.delete(tagId2, tagRepository);
+
+        assertNull(tagRepository.findById(tagId1).orElse(null));
+        assertNull(tagRepository.findById(tagId2).orElse(null));
+        assertNull(tagRepository.findById(tagId3).orElse(null));
     }
 
     @Test
@@ -43,7 +49,8 @@ public class TagManagerTest {
 
     @Test
     public void findAll() {
-        assertEquals(3, tagManager.findAll().size());
+        List<Tag> tagList = tagManager.findAll();
+        assertEquals(3, tagList.size());
     }
 
     @Test
