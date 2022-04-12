@@ -84,6 +84,11 @@ public class  Trade {
     @OneToMany(mappedBy = "trade", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Photo> pictures = new ArrayList<>();
 
+    ///////////////// Pictures /////////////////
+
+    @OneToMany(mappedBy = "trade", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Rate> rates = new ArrayList<>();
+
     ///////////////// Tags /////////////////
 
     @ManyToMany(fetch = FetchType.LAZY)

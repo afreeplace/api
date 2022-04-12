@@ -36,7 +36,6 @@ public class CategoryController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-
     @GetMapping("/generate")
     public ResponseEntity<Map<String, Object>> generate() {
         categoryManager.generate();

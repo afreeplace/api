@@ -27,6 +27,8 @@ public class ExceptionConstants {
         return "Veuillez saisir des heures valides.";
     }
     public static String dataNotFound() { return "Les données demandées ne sont pas existantes."; }
+    public static String dataNotGood() { return "Les données ne sont pas valides."; }
     public static String badHoursSet() { return "Les heures saisies ne sont pas valides."; }
+    public static String cannotDoThat() { return "L'opération ne peut aboutir.."; }
 
 }
