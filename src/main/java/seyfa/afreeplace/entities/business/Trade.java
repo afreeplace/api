@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@ToString
 @Getter
 @Setter
 @Entity(name = "Trade")
@@ -75,7 +74,12 @@ public class  Trade {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "trade", fetch = FetchType.EAGER)
     private Address address;
 
-    ///////////////// Addresses /////////////////
+    ///////////////// Availability /////////////////
+
+    @OneToMany(mappedBy = "trade", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ScheduleDay> schedule = new ArrayList<>();
+
+    ///////////////// Pictures /////////////////
 
     @OneToMany(mappedBy = "trade", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Photo> pictures = new ArrayList<>();
@@ -90,7 +94,6 @@ public class  Trade {
     )
     private List <Tag> tags = new ArrayList<>();
 
-
     ///////////////// Category /////////////////
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -101,4 +104,20 @@ public class  Trade {
     )
     private List <Category> categories = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "Trade{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", description='" + description + '\'' +
+                ", websiteUrl='" + websiteUrl + '\'' +
+                ", logoUrl='" + logoUrl + '\'' +
+                ", available=" + available +
+                ", status=" + status +
+                ", creationDate=" + creationDate +
+                ", owner=" + owner +
+                ", address=" + address +
+                '}';
+    }
 }

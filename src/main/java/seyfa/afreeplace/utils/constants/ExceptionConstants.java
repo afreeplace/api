@@ -23,5 +23,11 @@ public class ExceptionConstants {
     public static String emailAlreadyExists() {
         return "L'adress email existe déjà'.";
     }
+    public static String badAvailability() {
+        return "Veuillez saisir des heures valides.";
+    }
+    public static String dataNotFound() {
+        return "Les données demandées ne sont pas existantes.";
+    }
 
 }
