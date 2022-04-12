@@ -15,7 +15,7 @@ import seyfa.afreeplace.repositories.TradeRepository;
 import seyfa.afreeplace.repositories.UserRepository;
 import seyfa.afreeplace.utils.constants.ExceptionConstants;
 
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 
 @Service

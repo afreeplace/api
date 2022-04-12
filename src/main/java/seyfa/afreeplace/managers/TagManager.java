@@ -8,7 +8,7 @@ import seyfa.afreeplace.repositories.TagRepository;
 import seyfa.afreeplace.utils.constants.ExceptionConstants;
 
 import javax.persistence.criteria.CriteriaBuilder;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service

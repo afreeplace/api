@@ -2,6 +2,7 @@ package seyfa.afreeplace.managers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import seyfa.afreeplace.entities.business.Address;
 import seyfa.afreeplace.entities.business.Trade;
 import seyfa.afreeplace.exceptions.ManagerException;
@@ -11,7 +12,6 @@ import seyfa.afreeplace.services.geocoding.GeocodingService;
 import seyfa.afreeplace.services.geocoding.GoogleGeocodingService;
 import seyfa.afreeplace.utils.constants.ExceptionConstants;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service

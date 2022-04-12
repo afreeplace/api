@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 
 @Service
+@Transactional
 public class UserManager implements IManager<User, Integer> {
 
     @Autowired
@@ -27,6 +29,7 @@ public class UserManager implements IManager<User, Integer> {
         user.getTrades().forEach(trade -> {
             trade.getTags().size();
             trade.getPictures().size();
+            trade.getSchedule().size();
         });
 
         return user;

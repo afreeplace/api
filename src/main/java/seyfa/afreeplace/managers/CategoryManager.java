@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import seyfa.afreeplace.entities.business.Category;
 import seyfa.afreeplace.repositories.CategoryRepository;
 
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.Arrays;
 import java.util.List;
 

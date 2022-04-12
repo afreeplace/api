@@ -33,7 +33,7 @@ public class ScheduleDay {
     private boolean isOpen;
 
     // only if isOpen = true
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "day", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Hours> hours = new ArrayList<>();
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
