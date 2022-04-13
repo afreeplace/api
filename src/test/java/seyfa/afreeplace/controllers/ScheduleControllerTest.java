@@ -166,8 +166,8 @@ public class ScheduleControllerTest {
     public void testAddHoursWorks() {
         Hours hours = new Hours();
         hours.setDay(dayRepository.findById(dayId).get());
-        hours.setBegin(LocalTime.now().plusHours(1));
-        hours.setEnd(LocalTime.now().plusHours(3));
+        hours.setBegin(LocalTime.of(1, 0));
+        hours.setEnd(LocalTime.of(3, 0));
 
         BindingResult result = new BeanPropertyBindingResult(hours, "request");
         ResponseEntity responseEntity = scheduleController.addHours(hours, result);
@@ -194,8 +194,8 @@ public class ScheduleControllerTest {
     public void deleteHours() {
         Hours hours = new Hours();
         hours.setDay(dayRepository.findById(dayId).get());
-        hours.setBegin(LocalTime.now().plusHours(1));
-        hours.setEnd(LocalTime.now().plusHours(3));
+        hours.setBegin(LocalTime.of(1, 0));
+        hours.setEnd(LocalTime.of(3, 0));
         hours = hoursRepository.save(hours);
 
         ResponseEntity responseEntity2 = scheduleController.removeHours(hours.getId());

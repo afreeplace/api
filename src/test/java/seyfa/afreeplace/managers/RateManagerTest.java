@@ -24,7 +24,6 @@ public class RateManagerTest {
 
     @Autowired
     RateManager rateManager;
-
     @Autowired
     UserRepository userRepository;
 

@@ -32,6 +32,9 @@ public class Tag {
     @Column(name = "firstname", length = 30, nullable = false)
     private String logoUrl;
 
+    @Column(name = "colorCode", length = 30, nullable = false)
+    private String colorCode;
+
     @Column(name = "description", length = 30)
     private String description;
 

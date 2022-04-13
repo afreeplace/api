@@ -19,6 +19,7 @@ public class TagBuilderTest {
         tag.setName(tagName);
         tag.setLogoUrl("www.google.fr");
         tag.setCreationDate(LocalDateTime.now());
+        tag.setColorCode("#FFFFFF");
 
         if(tagRepository != null) {
             tagRepository.save(tag);

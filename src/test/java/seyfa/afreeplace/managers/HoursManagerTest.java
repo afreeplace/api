@@ -71,8 +71,8 @@ public class HoursManagerTest {
     public void testAddHoursWorks() {
         Hours hours = new Hours();
         hours.setDay(dayRepository.findById(dayId).get());
-        hours.setBegin(LocalTime.now().plusHours(1));
-        hours.setEnd(LocalTime.now().plusHours(3));
+        hours.setBegin(LocalTime.of(1, 0));
+        hours.setEnd(LocalTime.of(3, 0));
 
         hours = hoursManager.create(hours);
 
@@ -84,8 +84,8 @@ public class HoursManagerTest {
     public void testAddHoursTwice() {
         Hours hours = new Hours();
         hours.setDay(dayRepository.findById(dayId).get());
-        hours.setBegin(LocalTime.now().plusHours(1));
-        hours.setEnd(LocalTime.now().plusHours(3));
+        hours.setBegin(LocalTime.of(1, 0));
+        hours.setEnd(LocalTime.of(3, 0));
 
         hours = hoursManager.create(hours);
 
@@ -113,8 +113,8 @@ public class HoursManagerTest {
     public void deleteHours() {
         Hours hours = new Hours();
         hours.setDay(dayRepository.findById(dayId).get());
-        hours.setBegin(LocalTime.now().plusHours(1));
-        hours.setEnd(LocalTime.now().plusHours(3));
+        hours.setBegin(LocalTime.of(1, 0));
+        hours.setEnd(LocalTime.of(3, 0));
         hours = hoursManager.create(hours);
 
         hoursManager.delete(hours.getId());
