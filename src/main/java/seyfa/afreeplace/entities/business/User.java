@@ -49,6 +49,11 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Trade> trades = new ArrayList<>();
 
+    ///////////////// Pictures /////////////////
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Rate> rates = new ArrayList<>();
+
     ///////////////// ADMIN ROLES /////////////////
 
     @ManyToMany(fetch = FetchType.EAGER)

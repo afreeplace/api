@@ -34,7 +34,7 @@ public class RateRepositoryTest {
 
     @BeforeEach
     public void before() {
-        userId = UserBuilderTest.create(userRepository, "test@api.fr", "password").getId();
+        userId = UserBuilderTest.create(userRepository, "test@apii.fr", "password").getId();
         tradeId = TradeBuilderTest.create(tradeRepository, "name", Trade.Status.VALIDATED).getId();
     }
 

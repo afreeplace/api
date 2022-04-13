@@ -27,7 +27,8 @@ public class HoursManager {
             throw new ManagerException(ExceptionConstants.badHoursSet());
         }
 
-        if( (hours.getEnd().getHour() - hours.getBegin().getHour()) <= 0 ) {
+        int difference = (hours.getEnd().getHour() - hours.getBegin().getHour());
+        if( difference <= 0 ) {
             throw new ManagerException(ExceptionConstants.badHoursSet());
         }
 

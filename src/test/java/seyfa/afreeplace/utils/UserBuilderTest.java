@@ -26,7 +26,7 @@ public class UserBuilderTest {
     public static void delete(int userId, UserRepository userRepository) {
         User user = userRepository.findById(userId).orElse(null);
         if(user != null) {
-            userRepository.delete(userRepository.findById(userId).get());
+            userRepository.delete(user);
             logger.info("Deleted user {}", userId);
         } else {
             logger.info("Already deleted user {}", userId);

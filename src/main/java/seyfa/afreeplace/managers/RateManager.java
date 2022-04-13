@@ -1,6 +1,7 @@
 package seyfa.afreeplace.managers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import seyfa.afreeplace.entities.business.Rate;
 import seyfa.afreeplace.entities.business.Trade;
@@ -15,6 +16,7 @@ import seyfa.afreeplace.utils.constants.ExceptionConstants;
 import java.time.LocalDateTime;
 
 @Transactional
+@Service
 public class RateManager {
 
     private static int MAX_RATE = 5;
@@ -32,6 +34,12 @@ public class RateManager {
         User user = userRepository.findById(rate.getUser().getId()).orElseThrow(() -> new ManagerException(ExceptionConstants.userNotFound()));
         Trade trade = tradeRepository.findById(rate.getTrade().getId()).orElseThrow(() -> new ManagerException(ExceptionConstants.userNotFound()));
 
+        Rate foundRate = rateRepository.findByUserAndTrade(user.getId(), trade.getId()).orElse(null);
+
+        if (foundRate != null) {
+            throw new ManagerException(ExceptionConstants.cannotDoThat());
+        }
+
         checkRate(user, trade, rate);
 
         Rate newRate = new Rate();
@@ -41,6 +49,7 @@ public class RateManager {
         newRate.setTrade(trade);
         newRate.setEditDate(LocalDateTime.now());
         rateRepository.save(newRate);
+        trade.getRates().add(newRate);
 
         return newRate;
     }
@@ -59,6 +68,8 @@ public class RateManager {
         rateRepository.save(rateToEdit);
     }
 
+    // rater is not owner
+    // rate is between 1 and 5
     private void checkRate(User user, Trade trade, Rate rate) {
         if (trade.getOwner().equals(user)) {
             throw new ManagerException(ExceptionConstants.cannotDoThat());
@@ -68,8 +79,5 @@ public class RateManager {
             throw new ManagerException(ExceptionConstants.dataNotGood());
         }
 
-        if (rateRepository.findByUserAndTrade(user.getId(), trade.getId()) != null) {
-            throw new ManagerException(ExceptionConstants.cannotDoThat());
-        }
     }
 }

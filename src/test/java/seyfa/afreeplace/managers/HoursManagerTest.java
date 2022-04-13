@@ -99,8 +99,8 @@ public class HoursManagerTest {
     public void testAddingBadHours() {
         Hours hours = new Hours();
         hours.setDay(dayRepository.findById(dayId).get());
-        hours.setBegin(LocalTime.now().plusHours(5));
-        hours.setEnd(LocalTime.now().plusHours(3));
+        hours.setBegin(LocalTime.of(11, 0));
+        hours.setEnd(LocalTime.of(9, 0));
 
         Hours finalHours = hours;
         assertThrows(ManagerException.class, () -> {

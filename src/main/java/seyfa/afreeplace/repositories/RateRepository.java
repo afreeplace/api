@@ -17,6 +17,12 @@ public interface RateRepository extends JpaRepository<Rate, Integer> {
             " FROM Rate rate" +
             " WHERE rate.user.id = :userId" +
             " AND rate.trade.id = :tradeId")
-    Rate findByUserAndTrade(int userId, int tradeId);
+    Optional<Rate> findByUserAndTrade(int userId, int tradeId);
+
+    @Query("SELECT COUNT(rate)" +
+            " FROM Rate rate" +
+            " WHERE rate.user.id = :userId" +
+            " AND rate.trade.id = :tradeId")
+    int hasAnyComment(int userId, int tradeId);
 
 }
