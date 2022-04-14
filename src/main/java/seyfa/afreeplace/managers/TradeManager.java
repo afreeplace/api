@@ -8,6 +8,7 @@ import seyfa.afreeplace.entities.business.Category;
 import seyfa.afreeplace.entities.business.Tag;
 import seyfa.afreeplace.entities.business.Trade;
 import seyfa.afreeplace.entities.business.User;
+import seyfa.afreeplace.entities.request.UserRequest;
 import seyfa.afreeplace.exceptions.ManagerException;
 import seyfa.afreeplace.repositories.CategoryRepository;
 import seyfa.afreeplace.repositories.TagRepository;
@@ -35,6 +36,9 @@ public class TradeManager implements IManager<Trade, Integer> {
 
     @Autowired
     CategoryRepository categoryRepository;
+
+    @Autowired
+    UserRequest userRequest;
 
     @Override
     public Trade find(Integer id) throws ManagerException {
@@ -124,6 +128,26 @@ public class TradeManager implements IManager<Trade, Integer> {
         if(trade.getCategories().contains(category)) {
             trade.getCategories().remove(category);
             logger.info("Category '{}' removed from trade '{}'", categoryId, tradeId);
+        }
+    }
+
+
+    public void addFavoriteTrade(int tradeId) {
+        Trade trade = tradeRepository.findById(tradeId).orElseThrow(()-> new ManagerException(ExceptionConstants.tradeNotFound()));
+        User currentUser = userRepository.findById(userRequest.getAuthUser().getId()).get();
+
+        if(!currentUser.getFavoriteTrades().contains(trade)) {
+            currentUser.getFavoriteTrades().add(trade);
+        }
+    }
+
+    public void removeFavoriteTrade(int tradeId) {
+        Trade trade = tradeRepository.findById(tradeId).orElseThrow(()-> new ManagerException(ExceptionConstants.tradeNotFound()));
+        User currentUser = userRepository.findById(userRequest.getAuthUser().getId()).get();
+
+        boolean containsIt = currentUser.getFavoriteTrades().contains(trade);
+        if(containsIt) {
+            currentUser.getFavoriteTrades().remove(trade);
         }
     }
 

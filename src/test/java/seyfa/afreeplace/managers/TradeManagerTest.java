@@ -11,6 +11,7 @@ import seyfa.afreeplace.Application;
 import seyfa.afreeplace.entities.business.Category;
 import seyfa.afreeplace.entities.business.Trade;
 import seyfa.afreeplace.entities.business.User;
+import seyfa.afreeplace.entities.request.UserRequest;
 import seyfa.afreeplace.exceptions.ManagerException;
 import seyfa.afreeplace.repositories.CategoryRepository;
 import seyfa.afreeplace.repositories.TagRepository;
@@ -48,13 +49,26 @@ public class TradeManagerTest {
     CategoryRepository categoryRepository;
 
     int tradeId, secondTradeId, userId;
+    int tradeId1, tradeId2;
+
     int tagId1, tagId2;
     int catId1, catId2;
     String name = "Seyfa Tech";
     Trade.Status status = Trade.Status.REQUESTED;
 
+    @Autowired
+    UserRequest userRequest;
+
     @BeforeEach
     public void before() {
+        userId = UserBuilderTest.create(userRepository, "test@gmail.Fr", "password").getId();
+        tradeId1 = TradeBuilderTest.create(tradeRepository, "Trade1", Trade.Status.VALIDATED).getId();
+        tradeId2 = TradeBuilderTest.create(tradeRepository, "Trade2", Trade.Status.VALIDATED).getId();
+        assertNotNull(tradeRepository.findById(tradeId1).orElse(null));
+        assertNotNull(tradeRepository.findById(tradeId2).orElse(null));
+
+        userRequest.setAuthUser(userRepository.findById(userId).get());
+
         tradeId = TradeBuilderTest.create(tradeRepository, name, status).getId();
         tagId1 = TagBuilderTest.create(tagRepository, "Tag1").getId();
         tagId2 = TagBuilderTest.create(tagRepository, "Tag2").getId();
@@ -191,4 +205,25 @@ public class TradeManagerTest {
         assertNotNull(categoryRepository.findById(catId1).orElse(null));
         assertNotNull(categoryRepository.findById(catId2).orElse(null));
     }
+
+
+    @Test
+    @org.springframework.transaction.annotation.Transactional
+    public void addFavoriteTrade() {
+        tradeManager.addFavoriteTrade(tradeId1);
+        tradeManager.addFavoriteTrade(tradeId1);
+        tradeManager.addFavoriteTrade(tradeId2);
+
+        assertEquals(2, userRepository.findById(userId).get().getFavoriteTrades().size());
+
+        tradeManager.removeFavoriteTrade(tradeId1);
+        assertEquals(1, userRepository.findById(userId).get().getFavoriteTrades().size());
+
+        tradeManager.removeFavoriteTrade(tradeId2);
+        assertEquals(0, userRepository.findById(userId).get().getFavoriteTrades().size());
+
+        assertNotNull(tradeRepository.findById(tradeId1).orElse(null));
+        assertNotNull(tradeRepository.findById(tradeId2).orElse(null));
+    }
+
 }

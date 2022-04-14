@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import seyfa.afreeplace.Application;
 import seyfa.afreeplace.entities.business.Trade;
 import seyfa.afreeplace.entities.business.User;
+import seyfa.afreeplace.entities.request.UserRequest;
 import seyfa.afreeplace.exceptions.ManagerException;
 import seyfa.afreeplace.repositories.CategoryRepository;
 import seyfa.afreeplace.repositories.TagRepository;
@@ -50,7 +51,11 @@ public class TradeControllerTest {
     @Autowired
     CategoryRepository categoryRepository;
 
+    @Autowired
+    UserRequest userRequest;
+
     int tradeId, secondTradeId, userId;
+    int tradeId1, tradeId2;
     int tagId1, tagId2;
     int catId1, catId2;
     String name = "Seyfa Tech";
@@ -58,6 +63,9 @@ public class TradeControllerTest {
 
     @BeforeEach
     public void before() {
+        userId = UserBuilderTest.create(userRepository, "test@gmail.Fr", "password").getId();
+        userRequest.setAuthUser(userRepository.findById(userId).get());
+
         tradeId = TradeBuilderTest.create(tradeRepository, name, status).getId();
 
         tagId1 = TagBuilderTest.create(tagRepository, "Tag1").getId();
@@ -65,6 +73,11 @@ public class TradeControllerTest {
 
         catId1 = CategoryBuilderTest.create(categoryRepository, "Categprie 1").getId();
         catId2 = CategoryBuilderTest.create(categoryRepository, "Categprie 2").getId();
+
+        tradeId1 = TradeBuilderTest.create(tradeRepository, "Trade1", Trade.Status.VALIDATED).getId();
+        tradeId2 = TradeBuilderTest.create(tradeRepository, "Trade2", Trade.Status.VALIDATED).getId();
+        assertNotNull(tradeRepository.findById(tradeId1).orElse(null));
+        assertNotNull(tradeRepository.findById(tradeId2).orElse(null));
     }
 
     @AfterEach
@@ -184,6 +197,25 @@ public class TradeControllerTest {
 
         assertNotNull(categoryRepository.findById(catId1).orElse(null));
         assertNotNull(categoryRepository.findById(catId2).orElse(null));
+    }
+
+    @Test
+    @org.springframework.transaction.annotation.Transactional
+    public void addFavoriteTrade() {
+        tradeController.addTradeToFavorite(tradeId1);
+        tradeController.addTradeToFavorite(tradeId1);
+        tradeController.addTradeToFavorite(tradeId2);
+
+        assertEquals(2, userRepository.findById(userId).get().getFavoriteTrades().size());
+
+        tradeController.removeTradeToFavorite(tradeId1);
+        assertEquals(1, userRepository.findById(userId).get().getFavoriteTrades().size());
+
+        tradeController.removeTradeToFavorite(tradeId2);
+        assertEquals(0, userRepository.findById(userId).get().getFavoriteTrades().size());
+
+        assertNotNull(tradeRepository.findById(tradeId1).orElse(null));
+        assertNotNull(tradeRepository.findById(tradeId2).orElse(null));
     }
 
 }

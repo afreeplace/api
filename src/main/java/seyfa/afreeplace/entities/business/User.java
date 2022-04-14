@@ -64,6 +64,16 @@ public class User implements Serializable {
     )
     private List <Role> roles = new ArrayList<>();
 
+    ///////////////// favorites /////////////////
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_favorite_trade",
+            joinColumns = @JoinColumn(name = "u_id"),
+            inverseJoinColumns = @JoinColumn(name = "tr_id")
+    )
+    private List <Trade> favoriteTrades = new ArrayList<>();
+
     ///////////////// CONSTRUCTORS /////////////////
 
     public User() {

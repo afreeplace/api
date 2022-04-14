@@ -119,4 +119,22 @@ public class TradeController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @GetMapping("/favorite/add/{tradeId}")
+    public ResponseEntity<Map<String, Object>> addTradeToFavorite(@PathVariable int tradeId) {
+        Map result = new HashMap();
+
+        tradeManager.addFavoriteTrade(tradeId);
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @GetMapping("/favorite/remove/{tradeId}")
+    public ResponseEntity<Map<String, Object>> removeTradeToFavorite(@PathVariable int tradeId) {
+        Map result = new HashMap();
+
+        tradeManager.removeFavoriteTrade(tradeId);
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
 }

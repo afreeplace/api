@@ -1,8 +1,11 @@
 package seyfa.afreeplace.managers;
 
+import seyfa.afreeplace.entities.business.Trade;
 import seyfa.afreeplace.entities.request.PasswordRequest;
 import seyfa.afreeplace.entities.business.User;
+import seyfa.afreeplace.entities.request.UserRequest;
 import seyfa.afreeplace.exceptions.ManagerException;
+import seyfa.afreeplace.repositories.TradeRepository;
 import seyfa.afreeplace.repositories.UserRepository;
 import seyfa.afreeplace.utils.constants.ExceptionConstants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,12 @@ public class UserManager implements IManager<User, Integer> {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    TradeRepository tradeRepository;
+
+    @Autowired
+    UserRequest userRequest;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -92,5 +101,6 @@ public class UserManager implements IManager<User, Integer> {
         User user = userRepository.findById(id).orElseThrow(() -> new ManagerException(ExceptionConstants.userNotFound()));
         userRepository.delete(user);
     }
+
 
 }

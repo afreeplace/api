@@ -11,6 +11,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -125,4 +126,13 @@ public class  Trade {
                 ", address=" + address +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Trade trade = (Trade) o;
+        return id == trade.id;
+    }
+
 }

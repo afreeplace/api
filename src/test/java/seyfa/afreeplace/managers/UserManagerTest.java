@@ -3,11 +3,15 @@ package seyfa.afreeplace.managers;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.transaction.annotation.Transactional;
+import seyfa.afreeplace.entities.business.Trade;
 import seyfa.afreeplace.entities.request.PasswordRequest;
 import seyfa.afreeplace.entities.business.User;
 import seyfa.afreeplace.entities.request.UserRequest;
 import seyfa.afreeplace.exceptions.ManagerException;
+import seyfa.afreeplace.repositories.TradeRepository;
 import seyfa.afreeplace.repositories.UserRepository;
+import seyfa.afreeplace.utils.TradeBuilderTest;
 import seyfa.afreeplace.utils.UserBuilderTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,19 +38,33 @@ public class UserManagerTest {
     PasswordEncoder passwordEncoder;
 
     @Autowired
-    UserRequest userRequest;
+    TradeRepository tradeRepository;
 
     int userId;
     String email = "test@api.fr", password = "password";
 
+    int tradeId1, tradeId2;
+
     @BeforeEach
     public void before() {
         userId = UserBuilderTest.create(userRepository, email, passwordEncoder.encode(password)).getId();
+
+        tradeId1 = TradeBuilderTest.create(tradeRepository, "Trade1", Trade.Status.VALIDATED).getId();
+        tradeId2 = TradeBuilderTest.create(tradeRepository, "Trade2", Trade.Status.VALIDATED).getId();
+        assertNotNull(tradeRepository.findById(tradeId1).orElse(null));
+        assertNotNull(tradeRepository.findById(tradeId2).orElse(null));
     }
 
     @AfterEach
     public void after() {
         UserBuilderTest.delete(userId, userRepository);
+        TradeBuilderTest.delete(tradeId1, tradeRepository);
+        TradeBuilderTest.delete(tradeId2, tradeRepository);
+    }
+
+    @Test
+    public void ok () {
+        assertNotNull(userManager);
     }
 
     @Test
@@ -118,5 +136,6 @@ public class UserManagerTest {
            userManager.delete(nonExistingUserId);
         });
     }
+
 
 }

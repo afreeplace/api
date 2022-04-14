@@ -3,6 +3,7 @@ package seyfa.afreeplace.entities.request;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
+import seyfa.afreeplace.entities.business.User;
 
 @Component
 @RequestScope
@@ -12,15 +13,18 @@ public class UserRequest {
 
     public static int requestId = 1;
 
+    User user;
+
     public UserRequest() {
 
     }
 
-    public Object getAuthUser() {
-        return null;
+    public User getAuthUser() {
+        return user;
     }
 
-    public void setAuthUser(Object authUser) {
+    public void setAuthUser(User authUser) {
+        user = authUser;
         requestId++;
     }
 

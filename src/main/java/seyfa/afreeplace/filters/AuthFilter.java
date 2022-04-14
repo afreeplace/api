@@ -65,7 +65,7 @@ public class AuthFilter extends OncePerRequestFilter {
                     SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 
                     // Load user for the current request
-                    userRequest.setAuthUser(userRepository.findByEmail(email));
+                    userRequest.setAuthUser(userRepository.findByEmail(email).get());
                 }
             }
         }
