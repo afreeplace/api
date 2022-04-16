@@ -26,6 +26,9 @@ public class TradeController {
     @Autowired
     PhotoManager photoManager;
 
+    @Autowired
+    UserAccess userAccess;
+
     @PostMapping("/create")
     public ResponseEntity<Map<String, Object>> createTrade(@Valid @RequestBody Trade trade, BindingResult bindingResult) {
         Map result = ResponseObject.map();
@@ -43,6 +46,8 @@ public class TradeController {
         Map result = ResponseObject.map();
         BindingResultWrapper.checkFormErrors(bindingResult);
 
+        // TODO : verify trade belongs to rquest user
+        userAccess.hasRightToEditTrade(trade.getId());
         tradeManager.update(trade);
 
         result.put("trade", tradeManager.find(trade.getId()));
@@ -53,6 +58,7 @@ public class TradeController {
     public ResponseEntity<Map<String, Object>> deleteTrade(@PathVariable int tradeId) {
         Map result = new HashMap();
 
+        // TODO : verify trade belongs to rquest user
         tradeManager.delete(tradeId);
 
         result.put("message", "App Starter is working");
@@ -65,6 +71,7 @@ public class TradeController {
             @PathVariable("tagId") int tagId) {
         Map result = new HashMap();
 
+        // TODO : verify trade belongs to rquest user
         tradeManager.addTag(tradeId, tagId);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -76,6 +83,7 @@ public class TradeController {
             @PathVariable("tagId") int tagId) {
         Map result = new HashMap();
 
+        // TODO : verify trade belongs to rquest user
         tradeManager.removeTag(tradeId, tagId);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -87,6 +95,7 @@ public class TradeController {
             @PathVariable("categoryId") int categoryId) {
         Map result = new HashMap();
 
+        // TODO : verify trade belongs to rquest user
         tradeManager.addCategory(tradeId, categoryId);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -98,6 +107,7 @@ public class TradeController {
             @PathVariable("categoryId") int categoryId) {
         Map result = new HashMap();
 
+        // TODO : verify trade belongs to rquest user
         tradeManager.removeCategory(tradeId, categoryId);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
@@ -108,6 +118,7 @@ public class TradeController {
         BindingResultWrapper.checkFormErrors(bindingResult);
         int photoId = photoManager.create(photo);
 
+        // TODO : verify trade belongs to rquest user
         result.put("photo", photoManager.find(photoId));
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
@@ -115,6 +126,7 @@ public class TradeController {
     @GetMapping("/picture/delete/{photoId}")
     public ResponseEntity<Map<String, Object>> deletePhoto(@PathVariable("photoId") int photoId) {
         Map result = ResponseObject.map();
+        // TODO : verify trade belongs to rquest user
         photoManager.delete(photoId);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
@@ -123,6 +135,7 @@ public class TradeController {
     public ResponseEntity<Map<String, Object>> addTradeToFavorite(@PathVariable int tradeId) {
         Map result = new HashMap();
 
+        // TODO : verify trade belongs to rquest user
         tradeManager.addFavoriteTrade(tradeId);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -132,6 +145,7 @@ public class TradeController {
     public ResponseEntity<Map<String, Object>> removeTradeToFavorite(@PathVariable int tradeId) {
         Map result = new HashMap();
 
+        // TODO : verify trade belongs to rquest user
         tradeManager.removeFavoriteTrade(tradeId);
 
         return new ResponseEntity<>(result, HttpStatus.OK);

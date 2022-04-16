@@ -26,11 +26,15 @@ public class ScheduleController {
     @Autowired
     HoursManager hoursManager;
 
+    @Autowired
+    UserAccess userAccess;
+
     @PostMapping("/day/create")
     public ResponseEntity<Map<String, Object>> addScheduleDay(@Valid @RequestBody ScheduleDay scheduleDay, BindingResult bindingResult) {
         Map result = ResponseObject.map();
         BindingResultWrapper.checkFormErrors(bindingResult);
 
+        userAccess.hasRightToEditTrade(scheduleDay.getTrade().getId());
         ScheduleDay createdDay = dayManager.create(scheduleDay);
 
         result.put("day", createdDay);
@@ -41,6 +45,7 @@ public class ScheduleController {
     public ResponseEntity<Map<String, Object>> removeScheduleDay(@PathVariable("id") int id) {
         Map result = ResponseObject.map();
 
+        userAccess.hasRightToEditSchedule(id);
         dayManager.delete(id);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -51,6 +56,7 @@ public class ScheduleController {
         Map result = ResponseObject.map();
         BindingResultWrapper.checkFormErrors(bindingResult);
 
+        userAccess.hasRightToEditSchedule(hours.getDay().getId());
         Hours createdHours = hoursManager.create(hours);
 
         result.put("createdHours", createdHours);
@@ -61,6 +67,7 @@ public class ScheduleController {
     public ResponseEntity<Map<String, Object>> removeHours(@PathVariable("id") int id) {
         Map result = ResponseObject.map();
 
+        userAccess.hasRightToEditHours(id);
         hoursManager.delete(id);
 
         return new ResponseEntity<>(result, HttpStatus.OK);

@@ -2,25 +2,24 @@ package seyfa.afreeplace.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import seyfa.afreeplace.entities.business.ScheduleDay;
 import seyfa.afreeplace.entities.business.User;
 import seyfa.afreeplace.repositories.DayRepository;
 import seyfa.afreeplace.repositories.UserRepository;
+
+import java.time.DayOfWeek;
 
 public class DayBuilderTest {
 
     static final Logger logger = LoggerFactory.getLogger(UserBuilderTest.class);
 
-    public static User create(DayRepository dayRepository) {
-//        Availability availability = new Availability();
-//        availability.setMonday(false);
-//        availability.setFriday(true);
-//
-//        if(userRepository != null) {
-//            userRepository.save(user);
-//            logger.info("Created user " + user);
-//        }
-//        return user;
-        return null;
+    public static ScheduleDay create(DayRepository dayRepository) {
+        ScheduleDay scheduleDay = new ScheduleDay();
+        scheduleDay.setDayOfWeek(DayOfWeek.MONDAY);
+        scheduleDay.setOpen(false);
+
+        dayRepository.save(scheduleDay);
+        return scheduleDay;
     }
 
     public static void delete(int userId, UserRepository userRepository) {

@@ -26,11 +26,15 @@ public class AddressController {
     @Autowired
     AddressManager addressManager;
 
+    @Autowired
+    UserAccess userAccess;
+
     @PostMapping("/create")
     public ResponseEntity<Map<String, Object>> createAddress(@Valid @RequestBody Address address, BindingResult bindingResult) {
         Map result = ResponseObject.map();
         BindingResultWrapper.checkFormErrors(bindingResult);
 
+        userAccess.hasRightToEditTrade(address.getTrade().getId());
         int addressId = addressManager.create(address);
 
         result.put("address", addressManager.find(addressId));
@@ -50,6 +54,7 @@ public class AddressController {
     @GetMapping("/delete/{addressId}")
     public ResponseEntity<Map<String, Object>> deleteAddress(@PathVariable("addressId") int addressId) {
         Map result = ResponseObject.map();
+        userAccess.hasRighToEditAddress(addressId);
         addressManager.delete(addressId);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

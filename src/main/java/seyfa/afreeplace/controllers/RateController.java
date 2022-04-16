@@ -24,6 +24,9 @@ public class RateController {
     @Autowired
     RateManager rateManager;
 
+    @Autowired
+    UserAccess userAccess;
+
     @PostMapping("/create")
     public ResponseEntity<Map<String, Object>> addRate(@Valid @RequestBody Rate rate, BindingResult bindingResult) {
         Map result = ResponseObject.map();
@@ -40,6 +43,8 @@ public class RateController {
     public ResponseEntity<Map<String, Object>> editRate (@Valid @RequestBody Rate rate, BindingResult bindingResult) {
         Map result = ResponseObject.map();
         BindingResultWrapper.checkFormErrors(bindingResult);
+
+        userAccess.hasRightToEditTrade(rate.getTrade().getId());
 
         rateManager.edit(rate);
         return new ResponseEntity<>(result, HttpStatus.OK);
