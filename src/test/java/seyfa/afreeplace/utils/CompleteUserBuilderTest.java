@@ -2,6 +2,7 @@ package seyfa.afreeplace.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import seyfa.afreeplace.entities.business.*;
 import seyfa.afreeplace.entities.request.UserRequest;
 import seyfa.afreeplace.managers.*;
@@ -45,13 +46,17 @@ public class CompleteUserBuilderTest {
         ScheduleDay scheduleDay = DayBuilderTest.create(dayRepository);
         scheduleDay.setTrade(trade);
         trade.getSchedule().add(scheduleDay);
+        tradeRepository.save(trade);
 
         Hours hours = new Hours();
         hours.setBegin(LocalTime.now());
         hours.setEnd(LocalTime.now());
         hours.setDay(scheduleDay);
         hoursRepository.save(hours);
+
         scheduleDay.getHours().add(hours);
+        dayRepository.save(scheduleDay);
+
 
         return user.getId();
     }

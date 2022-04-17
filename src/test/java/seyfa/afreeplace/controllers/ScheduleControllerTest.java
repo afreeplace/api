@@ -15,12 +15,16 @@ import seyfa.afreeplace.Application;
 import seyfa.afreeplace.entities.business.Hours;
 import seyfa.afreeplace.entities.business.ScheduleDay;
 import seyfa.afreeplace.entities.business.Trade;
+import seyfa.afreeplace.entities.business.User;
+import seyfa.afreeplace.entities.request.UserRequest;
 import seyfa.afreeplace.exceptions.ManagerException;
 import seyfa.afreeplace.managers.HoursManager;
 import seyfa.afreeplace.repositories.DayRepository;
 import seyfa.afreeplace.repositories.HoursRepository;
 import seyfa.afreeplace.repositories.TradeRepository;
+import seyfa.afreeplace.repositories.UserRepository;
 import seyfa.afreeplace.utils.TradeBuilderTest;
+import seyfa.afreeplace.utils.UserBuilderTest;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -34,6 +38,7 @@ public class ScheduleControllerTest {
 
     static final Logger logger = LoggerFactory.getLogger(Application.class);
 
+    int userId;
     int tradeId;
     int dayId;
 
@@ -50,12 +55,25 @@ public class ScheduleControllerTest {
     DayRepository dayRepository;
 
     @Autowired
+    UserRepository userRepository;
+
+    @Autowired
     TradeRepository tradeRepository;
 
+    @Autowired
+    UserRequest userRequest;
 
     @BeforeEach
     public void before() throws Exception {
-        tradeId = TradeBuilderTest.create(tradeRepository, name,status).getId();
+        User user = UserBuilderTest.create(userRepository, "favvhcjgloute@test.fr", "password");
+        userId = user.getId();
+        userRequest.setAuthUser(user);
+
+        Trade trade = TradeBuilderTest.create(tradeRepository, name,status);
+        tradeId = trade.getId();
+        trade.setOwner(user);
+        tradeRepository.save(trade);
+
         ScheduleDay day = new ScheduleDay();
         day.setSpecificDate(LocalDate.now());
         day.setOpen(false);
@@ -68,6 +86,7 @@ public class ScheduleControllerTest {
 
     @AfterEach
     public void after() {
+        UserBuilderTest.delete(userId, userRepository);
         TradeBuilderTest.delete(tradeId, tradeRepository);
         assertNull(tradeRepository.findById(tradeId).orElse(null));
     }

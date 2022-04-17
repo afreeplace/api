@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import seyfa.afreeplace.entities.business.Rate;
 import seyfa.afreeplace.entities.business.Trade;
 import seyfa.afreeplace.entities.business.User;
+import seyfa.afreeplace.entities.request.UserRequest;
 import seyfa.afreeplace.exceptions.ManagerException;
 import seyfa.afreeplace.repositories.RateRepository;
 import seyfa.afreeplace.repositories.TradeRepository;
@@ -38,6 +39,9 @@ public class RateControllerTest {
     @Autowired
     RateRepository rateRepository;
 
+    @Autowired
+    UserRequest userRequest;
+
     int userId;
     int ownerId;
     int tradeId;
@@ -52,6 +56,7 @@ public class RateControllerTest {
         ownerId = UserBuilderTest.create(userRepository, ownerEmail, "password").getId();
         tradeId = TradeBuilderTest.create(tradeRepository, "name", Trade.Status.VALIDATED).getId();
 
+        userRequest.setAuthUser(userRepository.findById(ownerId).get());
         Trade trade = tradeRepository.findById(tradeId).get();
         trade.setOwner(userRepository.findById(ownerId).get());
         tradeRepository.save(trade);

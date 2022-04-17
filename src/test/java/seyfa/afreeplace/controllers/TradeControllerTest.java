@@ -63,10 +63,15 @@ public class TradeControllerTest {
 
     @BeforeEach
     public void before() {
-        userId = UserBuilderTest.create(userRepository, "test@gmail.Fr", "password").getId();
+        User user = UserBuilderTest.create(userRepository, "test@gmail.Fr", "password");
+        userId = user.getId();
         userRequest.setAuthUser(userRepository.findById(userId).get());
 
-        tradeId = TradeBuilderTest.create(tradeRepository, name, status).getId();
+        Trade trade = TradeBuilderTest.create(tradeRepository, name, status);
+        tradeId = trade.getId();
+        trade.setOwner(user);
+        tradeRepository.save(trade);
+
 
         tagId1 = TagBuilderTest.create(tagRepository, "Tag1").getId();
         tagId2 = TagBuilderTest.create(tagRepository, "Tag2").getId();

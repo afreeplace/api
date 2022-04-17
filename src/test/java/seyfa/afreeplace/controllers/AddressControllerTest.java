@@ -12,12 +12,16 @@ import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
 import seyfa.afreeplace.entities.business.Address;
 import seyfa.afreeplace.entities.business.Trade;
+import seyfa.afreeplace.entities.business.User;
+import seyfa.afreeplace.entities.request.UserRequest;
 import seyfa.afreeplace.exceptions.ManagerException;
 import seyfa.afreeplace.repositories.AddressRepository;
 import seyfa.afreeplace.repositories.TradeRepository;
+import seyfa.afreeplace.repositories.UserRepository;
 import seyfa.afreeplace.services.geocoding.GeocodingService;
 import seyfa.afreeplace.utils.AddressBuilderTest;
 import seyfa.afreeplace.utils.TradeBuilderTest;
+import seyfa.afreeplace.utils.UserBuilderTest;
 
 import java.util.Map;
 
@@ -38,25 +42,45 @@ public class AddressControllerTest {
     @Autowired
     GeocodingService geocodingService;
 
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    UserRequest userRequest;
+
+    int userId, tradeId;
     int addressId, secondAddressId;
 
     Logger logger = LoggerFactory.getLogger(AddressControllerTest.class);
 
     @BeforeEach
     public void before() throws Exception {
-        Address address = geocodingService.findByAddress("51 Rue de Rivoli").get(0);
-        System.err.println(address);
-        addressId = AddressBuilderTest.create(null, address).getId();
+        User user = UserBuilderTest.create(userRepository, "mail@gmail.com", "password");
+        userId = user.getId();
+        userRequest.setAuthUser(user);
+
+        Trade trade = TradeBuilderTest.create(tradeRepository, "Seyfa", Trade.Status.VALIDATED);
+        tradeId = trade.getId();
+        trade.setOwner(user);
+        tradeRepository.save(trade);
     }
 
     @AfterEach
     public void after() {
+        UserBuilderTest.delete(userId, userRepository);
         AddressBuilderTest.delete(addressId, addressRepository);
+    }
+
+    public void ok() {
+        assertNotNull(addressController);
     }
 
     @Test
     public void createWithNoOwnerFails() throws Exception {
         Address address = geocodingService.findByAddress("51 Rue de Rivoli").get(0);
+        address.setTrade(new Trade()
+        );
+
         assertThrows(ManagerException.class, () -> {
             BindingResult result = new BeanPropertyBindingResult(address, "request");
             addressController.createAddress(address, result);
@@ -65,10 +89,9 @@ public class AddressControllerTest {
 
     @Test
     public void createWorks() throws Exception {
-        Trade trade = TradeBuilderTest.create(tradeRepository, "Seyfa tech", Trade.Status.VALIDATED);
 
         Address address = geocodingService.findByAddress("51 Rue de Rivoli").get(0);
-        address.setTrade(trade);
+        address.setTrade(tradeRepository.findById(tradeId).get());
 
         BindingResult result = new BeanPropertyBindingResult(address, "request");
 
@@ -82,6 +105,7 @@ public class AddressControllerTest {
     @Test
     public void deleteExistingAddressWorks() throws Exception {
         Address address = geocodingService.findByAddress("51 Rue de Rivoli").get(0);
+        address.setTrade(tradeRepository.findById(tradeId).get());
         addressId = AddressBuilderTest.create(addressRepository, address).getId();
 
         addressController.deleteAddress(addressId);
